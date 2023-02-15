@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- ES6 -->
+    <!-- 
+        let声明变量：
+            语法：let f = 10;
+            特点：
+                变量不能被重复声明
+                块级作用域，如果在函数中声明，只在函数中生效
+                不存在变量提升
+                不影响作用域链
+
+        const声明常量：
+            语法：const NUM = 100； 
+            特点：
+                一定要赋初始值
+                一般常量名大写
+                常量的值不可被修改，数字或者对象的元素被修改不算
+                块级作用域
+
+        变量解构赋值
+            数组：
+                const arr = [1,2,3,4]
+                let [num1,num2,num3,num4] = arr
+                此时：num1 = 1，num2=2，num3=3，num4=4
+
+            对象:
+                const obj = {
+                    key1:value1,
+                    key2:value2.
+                    fun : function(){}
+                }
+                let{key1,key2,fun} = obj
+                此时：key1=value1，key2=value2，fun=function(){}
+            
+        模板字符串：
+            语法：let str1 = `字符串`
+
+            特点：
+                使用反引号 `` 创建
+                内容中可以直接换行
+                变量拼接：  let str2 = `${str1}字符串2`
+                
+        对象的简化写法：
+            let num = 1
+            let fn1 = function(){}
+            const obj = {
+                num,        相当于num：num；此时num = 1
+                fn1,        相当于fn1：function(){}
+                fn2(){}     相当于fn2:function(){}
+            }
+
+        箭头函数：
+            语法：let fn = (a,b) =>{return a+b;}
+
+            特点：
+                this是静态的，指的是创建时它的作用域
+                不能作为构造实例化对象，不能使用new创建对象
+                不能使用arguments变量
+                简写：
+                    只有一个参数可以省略()  let fn = a =>{return a;}
+                    只有一句语句可以省略{}  let fn = a => a++; 此时不能有return，执行结果就是返回值
+
+        函数参数默认值
+            语法：
+                function fn(a,b,c=10){}
+            
+            特点：
+                形参初始化，具有默认值的参数一般位置靠后
+                与解构赋值联用：
+                    function fn({key1="value1",key2}){}
+                    obj({
+                        key1:value,
+                        key2:value2
+                    })
+                    如果调用函数时key1没有参数，则使用value1
+
+        rest参数
+            定义：相当于arguments
+            语法：function fn(a,b,...args){}
+            特点：...args需要放在最后，以数组形式储存
+
+        ...扩展运算符
+            定义：将数组转换成参数序列
+            语法：
+                let arr = [1,2,3]
+                function fn(){}
+                fn(...arr);         相当于fn('1','2','3')
+            应用：
+                合并数组：fn(...arr1,...arr2)       arguments中获取的是数组合并后的数组
+                克隆数组：arr2 = [...arr1]          浅克隆
+                伪数组转换真数组：arr2 = [...objs]
+
+        symbol数据类型
+            定义：一种类似于字符串的全新数据类型
+            语法：
+                let s1 = Symbol()
+                let s2 = Symbol('描述')     s2与s3不全等
+                let s3 = Symbol('描述')
+                let s4 = Symbol.for('描述') s4与s5全等
+                let s5 = Symbol.for('描述')
+            特点：
+                1.symbol的值是唯一的，用来解决命名冲突的问题
+                2.symbol的值不能与其他值运算，运算结果为USONB
+                3.symbol定义的对象属性不能使用for in循环遍历，可以使用Reflect.ownKeys获取对象名的所有键名
+            应用：向对象obj1中添加symbol类型方法
+                let obj1 = {}
+                let obj = {         声明一个对象,里面定义两个symbol类型变量
+                    up:Symbol();
+                    down:Symbol();
+                }
+                obj1[obj.up] = function(){}
+                obj1[obj.down] = function(){}
+                或者
+                let obj3 = {
+                    [Symbol('key')]:function(){}
+                }
+            内置属性，在特定场景执行
+
+        迭代器：
+            定义：迭代器是一个接口，为不同的数据结构提供统一的访问机制，只要部署iterator接口，就可以完成遍历
+            
+            for of循环遍历：
+                定义：原生具备iterator接口的属性都可以使用for in遍历，
+                    包括array、arguments、set、map、string、typedarray、nodelist
+
+                语法：
+                    const arr = ['aaa','bbb','ccc']
+                    for(let v of arr){
+                        console.log(v)      打印出来的是value值
+                    }
+
+            工作原理：
+                1.创建一个指针对象，指向当前数据结构的起始位置
+                2.第一次电泳对象的next方法，指针自动指向数据结构的第一个成员
+                3.然后不断调用next方法，指针一致往后移动，直到最后一个成员
+                4.每调用next方法返回一个包含value和done属性对象
+                
+        生成器：
+            定义：生成器是一个特殊的函数，异步编程纯回调函数
+            语法：
+                yield ''; 函数语法的分隔符
+                function * fn(){
+                    yield 'one'
+                    yield 'two'
+                }
+                let fn1 = fn()
+                fn1.next()方法依次返回两个分隔符之间信息,有参数表示yield返回结果
+                for of遍历返回两个分隔符之间信息
+            应用：
+                function fn1(){
+                    setTimeout(()=>{
+                        console.log('111')
+                        gens.next()
+                    },1000)
+                }
+                function fn2(){
+                    setTimeout(()=>{
+                        console.log('222')
+                        gens.next()
+                    },2000)
+                }
+                function fn3(){
+                    setTimeout(()=>{
+                        console.log('333')
+                    },3000)
+                }
+                function * gen(){
+                    yield fun1();
+                    yield fun2();
+                    yield fun3();
+                }
+                let gens = gen()
+                gens.next()
+
+        promise构造函数：
+            定义：es6引入异步编程的新解决方案，用来封装异步操作并获取成功或失败的结果
+            语法：
+                const p = new Promise(function(resolve,reject){
+                    let data = "模拟成功数据"
+                    let err = "模拟失败日志"
+                    // 成功
+                    resolve(data)
+                    // 失败
+                    reject(err)
+                })
+                p.then((value) => {    
+                    console.log(value)
+                },(reason) => {
+                    console.log(reason)
+                });
+                p.catch((err) => {
+                    console.log(err)
+                })
+            then方法返回结果是promise对象，
+                返回结果不是promise对象都会判定为成功，传给下一个then
+                then方法抛出错误视为失败
+                then方法返回结果是promise对象，视为失败
+            catch方法返回失败信息
+        
+        set数据结构  集合：
+            定义：          let s = new Set([...,...,...])
+            个数            s.size
+            添加            s.add(...)
+            删除            s.delete(...)
+            检测            s.has(...)
+            清空            s.clear()
+            遍历            for(var v of s){...}    
+
+        Map数据结构 对象：
+            数组            let m = new Map()
+            添加            m.set(key,value)
+            个数            m.size
+            删除            m.delete(key)
+            获取            m.get(key)
+            清空            m.clear()
+            遍历            for(var v of s){...}
+
+        class 类：
+            通过class关键字定义类，使对象原型的写法更加清晰，更像面对对象编程的语法
+            class news{                     class定义构造函数
+                constructor(a1){            初始化构造函数
+                    this.a1 = a1
+                }
+                fun(){...}                  构造函数方法
+                static name = name1         静态属性，实例对象访问不到
+                get a1(){}                  读取属性时运行
+                set a1(value){}             修改属性时运行
+            }
+            class news2 extends news{       继承news类中属性与方法
+                constructor(a1){
+                    super(a1)               使用父类初始化构造函数
+                }
+                fun(){...}                  重写父类方法
+            }
+        
+        内置对象扩展：
+            js最小精度                      Number.EPLILON
+            2进制ob开头 8进制0o开头 16进制0x开头
+            是否有限数                      Number.isfinite(num)
+            是否NaN                         Number.isNaN(num)
+            是否整数                        Number.isInteger(num)
+            去除小数                        Math.trunc(num)
+            判断正零负                      Math.sign(num)
+            判断相等                        Object.is(a1,a2)
+            合并对象 后覆盖前               Object.assign(o1,o2)
+            设置原型对象                    Object.setPrototypeOf(fun1,fun2)
+            获取原型对象                    Object.getPrototypeOf(fun1)
+
+        模块化：
+            防止命名冲突 代码复用 高维护性
+            暴露                            export var num = 10
+            统一暴露                        export {... , ...}
+            默认暴露                        export default{...}
+            通用接收                        import * as m1 from "...js"
+            结构赋值接收                    import {num1 as num} from "...js"
+            简便形式接收                    import m2 from "...js"
+            模块化代码转换：
+                1.安装baber-cli babel-preset-env browserify
+                    npm i babel-cli babel-preset-env browserify -D
+                2.代码转化
+                    npx babel js -d newjs --presets=babel-preset-env 
+                3.打包
+                    npx browserify newjs/test2.js -o newjs/app.js
+
+        ES7：
+            数组中是否存在元素                数组.includes('元素')
+            次方                             num ** num
+
+        ES8：
+            async函数定义：async function fn(){return：...}
+            async函数返回值为promise对象
+            return值为字符串 返回结果是成功promise对象，成功值为字符串
+            return值为抛出错误  返回结果为失败promise对象，失败值为错误对象
+            return值为promise 返回结果与promise结果一致
+            await：promise实例对象  获取promise返回成功对象的值
+
+            获取对象所有键                  Object.keys(obj)
+            获取对象所有值                  Object.values(obj)
+            获取对象信息 数组格式            Object.entries(obj)
+            对象属性描述                    Object.getOwnPropertyDescriptiors(obj)
+
+        ES9:
+            扩展运算符与rect参数可以对对象使用
+            正则扩展 命名捕获分组 
+                let src1 = "<a href="www.con">text</a>"
+                let src2 = /<a href="(?<name1>.*)">(?<name2>.*)</a>/
+                let src = src2.exec(src1)
+                此时：src.groups.name1 = www.con 
+                    src.groups.name2 = text
+            正则扩展 断言
+                let str = "aaa111bbb222ccc"
+                let str1 = /\d+(?=c)/           正向断言
+                let str2 = str1.exec(str)       str2为 222 的信息
+                let str3 = /(?<=b)\d+/          反向断言
+                let str4 = str3.exec(str)       str4为 222 的信息
+            正则扩展 dotall
+                let str = `
+                    <ul>
+                        <li></li>
+                    </ul>`
+                let str1 = /<ul>.*?<li>(.*?)</li>/gs        
+                let str2 = str1.exec(str)     
+            
+        ES10：
+            二维数组转化为对象              Object.fromEnteries(二维数组)
+            清除字符串左侧空表字符           str.trimStart()
+            清除字符串右侧空白字符           str.trimEnd()
+            降低数组维度                    arr.flat(num)
+            降低map结构维度为一维            arr.flatMap()
+            获取symbol数据描述              symbol.description
+
+        ES11：
+            私有属性                        #属性名
+            结果一定是成功                  Promise.allSettled([p1,p2])
+            都成功才成功                    Promise.all([p1,p2])
+            正则扩展 matchAll()
+                let str = `
+                    <ul>
+                        <li>test1</li>
+                        <li>test2</li>
+                    </ul>`
+                let str1 = /<ul>.*?<li>(.*?)</li>/sg
+                let str2 = str1.matchAll(str)       str2可以使用for of遍历
+            可选链操作符                    ?.
+            动态import 需要使用某个模块时才引入,module为该模块暴露的对象
+                import(...).then(module=>{...})  
+            大整形                          BigInt(max) + BigInt(num)                      
+            绝对全局对象                    globalThis
+
+
+
+
+
+
+
+     -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

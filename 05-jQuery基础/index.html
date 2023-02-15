@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery基础时</title>
+</head>
+<body>
+    <!-- jQuery -->
+    <!-- 
+        jQuery的入口函数
+            两种方法相同,页面DOM结构渲染完毕就会执行里面的代码,不需要等到所有外部资源加载完成
+            1.$(function(){})
+            2.$(document).ready(function(){}) 
+
+        $是jQuery的顶级对象
+
+        jQuery对象与DOM对象
+            1.用原生js获取到的对象叫DOM对象
+            2.用jquery获取到的对象叫jquery对象
+            3.jquery对象本质是利用$对DOM对象包装后产生的对象,以伪数组形式储存
+            4.DOM对象与jquery对象的 属性、方法 有些不通用
+
+            5.DOM对象转换成jquery对象   $('DOM对象')
+            6.jquery对象转换成DOM对象   $('对象')[索引号]
+              jquery对象转换成DOM对象   $('对象').get(索引号)
+
+        jquery隐式迭代
+            遍历内部DOM元素的过程叫做隐式迭代
+            给匹配到的所有元素进行遍历,执行相应方法,不需要我们再循环,简化操作,方便调用
+
+        互排锁、节流阀，设置一个boolean变量flag，通过if(flag)和修改flag内容实现函数运行条件
+
+        选择器
+            $('#id')            获取指定id元素
+            $('*')              获取所有元素
+            $('.class')         获取同一类的元素
+            $('标签')           获取同一类标签的所有元素
+            $('div,p')          获取多个元素,使用 , 连接
+            $('li.current')     交集元素
+
+            $('ul>li')          获取亲儿子层级元素
+            $('ul li')          获取后代所有元素
+            $("li:first")       获取第一个li元素
+            $('li:last')        获取最后一个li元素
+            $('li:eq(index)')   获取li中索引号为index的元素
+            $('li:odd')         获取li元素中索引号为奇数的元素
+            $('li:even')        获取li元素中索引号为偶数的元素
+
+            $('li').parent()        获取父级
+            $('ul').children('li')  获取亲儿子  相当于$('ul>li')
+            $('ul').find('li')      获取后代    相当于$('ul li')
+            $('li').siblings('li')  获取兄弟元素，不包括自己    用于排他思想
+            $('li').nextAll('li')   获取之后的同辈元素
+            $('li').prevAll('li')   获取之前的同辈元素
+            $('li').hasClass('类名') 检查当前元素是否含有某个类，有返回true
+            $('li').eq(index)       相当于$('li:eq(2)')
+
+        操作css
+            1.$(this).css('css属性名')                 获取css属性值
+            2.$(this).css('css属性名'，'css属性值')     修改属性，多个属性使用 ; 隔开
+            3.$(this).css({css属性名:'css属性值'})      使用对象方式添加，多个属性使用 ，隔开，驼峰命名,属性值是数字不用加引号
+        
+        操作类名
+            1.$(this).addClass('类名')      添加类名
+            2.$(this).removeClass('类名')   移除类名
+            3.$(this).toggleClass('类名')   切换类名，有变无，无变有
+
+        动画
+            1.show(动画时长，运动曲线，回调函数)                显示
+            2.hide(动画时长，运动曲线，回调函数)                隐藏
+            3.toggle(动画时长，运动曲线，回调函数)              切换
+
+            1.slideDown(动画时长，运动曲线，回调函数)           下滑显示
+            2.slideUp(动画时长，运动曲线，回调函数)             上滑隐藏
+            3.slideToggle(动画时长，运动曲线，回调函数)         切换
+
+            1.fadeIn(动画时长，透明度，运动曲线，回调函数)       淡入
+            2.fadeOut(动画时长，透明度，运动曲线，回调函数)      淡出
+            3.fadeToggle(动画时长，透明度，运动曲线，回调函数)   切换
+            
+            1.animate({属性名：属性值}，动画时长，运动曲线，回调函数)
+
+                没有参数表示没有动画，有参数时 动画时长 与 透明度 必填
+                动画时长指消失所需的时间，默认 normal 正常，可以选slow慢，fast快，或者毫秒数值
+                运动曲线，默认 swing 快-慢-快，可以选择 linear 匀速
+                透明度，取值0-1
+                回调函数，运行之后执行
+
+            
+            动画排队问题
+                问题：同一对象快速执行多个动画会出现动画排队问题
+                解决：在动画方法前加stop()方法，例如$(this).stop().show()
+            
+
+        属性操作：
+            1.prop('属性名')                获取元素固有的属性，比如href、title等
+            2.prop('属性名'，'属性值')       设置元素属性值
+            
+            3.attr('属性名')                 获取自定义属性
+            4.attr('属性名'，'属性值')        自定义属性值
+            
+            5.data('key'，'value')          在元素上存数据，页面刷新，数据消失
+            6.data('key')                   获取数据
+
+        内容操作
+            1.html()                        获取元素内容
+            2.html('内容')                  修改元素内容
+
+            3.text()                        获取元素文本内容
+            4.text('内容')                  修改元素文本内容
+
+            5.val()                         获取表单value
+            6.val('内容')                   修改表单value
+
+        元素操作：
+            1.each(function(index,DOM){})           遍历元素对象，index表示索引号，DOM表示DOM元素
+            2.$.each(对象，function(index,value){})  遍历任何对象，通常用于遍历数组，处理数据
+
+            3.$('<li></li>')                 创建元素
+            4.append(元素对象)                在元素内部最后面添加
+            5.prepend(元素对象)               在元素内部最前面添加对象 
+            6.before(元素对象)                在元素前面那添加对象
+            7.after(元素对象)                 在元素后面添加对象
+            8.对象.remove()                   删除对象
+            9.对象.empty()                    删除对象所有子节点
+            10对象.html('')                   修改内部为空
+        
+        尺寸操作：返回的是数字型，参数为数字表示修改相应值
+            1.width()、height()             获取width、height  
+            2.innerWidth()、innerHeight()   获取元素宽高、包括padding
+            3.outerWidth()、outerHeight()   获取元素宽高、包括padding、border
+            4.outerWidth(true)、outerHeight(true)   获取元素宽高，包括padding、border、margin    
+            
+        位置操作：返回的是数字型
+            1.offset()          相对于页面文档位置，有left、top两个属性，在参数中添加{left:0,top:0}可以设置偏移量
+            2.position()        相对有定位父级的位置，有left、top两个属性，不可修改
+            3.scollTop()        被卷去头部的距离，可以设置数字参数，表示修改，scollTop属性可以在animate中使用
+              scollLeft()       被卷去左侧的距离，可以设置数字参数，表示修改，scollLeft属性可以在animate中使用
+
+        事件：
+            hover(函数1,函数2)        事件切换  
+                第一个函数表示鼠标经过，第二个函数表示鼠标移开，
+                只有一个函数时，鼠标经过移开都会调用
+
+            change(函数)            表单失去焦点事件
+
+        事件处理：
+            事件绑定：
+                对象.on({
+                    mouseenter：function(){鼠标移入事件},
+                    mousemove：function(){鼠标移动事件},
+                })
+                对象.on('mouseenter mousemove',function(){移入，移动都会触发})
+
+            事件委托：
+                $('ul').on('click','li'，function(){})      
+
+            事件解绑：
+                $('li').off()                  解除所有事件
+                $('li').off('click')           解除单个事件
+                $('ul').off('click','li')      解除事件委托
+
+            只执行一次
+                $('ul').one('click',function(){})  
+
+        自然触发事件：
+            1.$('input').focus()                        input组件获取焦点时触发
+            2.$('input').trigger('focus')               input组件执行指定事件，会触发默认事件(获取焦点)
+            3.$('input').triggerHandler('focus')        input组件执行指定事件，不会触发默认事件(获取焦点)
+
+        事件对象：
+            e.preventDefault()          阻止默认行为
+            e.stopPropagetion()         阻止冒泡
+        
+        拷贝对象：
+            $.extend(true,obj,obj1,obj2)  把obj1、obj2拷贝给obj
+            true为深拷贝，false或者不填为浅拷贝，冲突的数据会被覆盖
+                深拷贝：数据完全拷贝，属性会合并在一起，修改obj1不会影响obj
+                浅拷贝：简单数据完全拷贝，复杂数据拷贝地址，修改obj1复杂数据会影响obj
+
+        JQ多库共存：
+            问题：jquery使用$作为标识符，如果其他js库也使用$作为标识符，会冲突
+            方法：
+                1.不使用$，直接使用Jquery，比如jQuery('div')
+                2.修改jquery标识符：var 新标识符 = $.noConflict()
+            
+        JQ插件：
+            常用插件：
+                jQuery插件库    地址：https://www.jq22.com/
+                jQuery之家      地址：http://www.htmleaf.com/
+            使用方法：
+                1.下载插件，解压插件，拷贝相关文件，引用相关文件
+                2.复制相关html、css、js
+                3.通过文档修改html、css、js实现想要的效果
+
+
+     -->
+</body>
+</html>

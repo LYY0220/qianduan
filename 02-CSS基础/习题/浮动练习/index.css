@@ -1,0 +1,129 @@
+body{
+    font-size: 16px;
+    min-width: 1200px;
+}
+.center nav{
+    clear: both;
+    background-color: #47464a;
+    height: 60px;
+}
+.center nav ul{
+    text-align: center;
+}
+.center nav ul li{
+    display: inline-block;
+    line-height: 60px;
+    padding: 0px 40px;
+    text-align: center;
+    color: #999;
+} 
+.center nav ul li .a-active{
+    color: #ef4238;
+}
+.center nav ul li:hover{
+    color: #fff;
+}
+.center section{
+    clear: both;
+    width: 1120px;
+    margin: auto;
+}
+.center section>ul{
+    margin-top: 40px;
+    padding: 0px 20px;
+    border: rgb(229, 229, 229) solid 1px;
+}
+.center section>ul>li{
+    padding: 10px 0px;
+    border-top: rgb(229, 229, 229) dotted 1px;
+}
+.center section>ul>li:nth-child(1){
+    border-top: none;
+}
+.center section>ul>li>div{
+    float: left;
+    color: rgb(153,153,153);
+    height: 24px;
+    line-height: 24px;
+    font-size: 14px;
+}
+.center section>ul>li>ul{
+    margin-left: 40px;
+}
+.center section>ul>li>ul>li{
+    display: inline-block;
+    margin-left: 12px;
+    border-radius: 14px;
+    padding: 3px 9px;
+}
+.center section>ul>li>ul>li>a{
+    font-size: 14px;
+}
+.center section>ul>li>.section-li>.li-active{
+    color: rgb(255, 255, 255);
+    background: rgb(243, 77, 65);
+}
+.center section .section-li>li:hover{
+    color: #ef4238;
+}
+.center section>ul>li>ul>.li-active>a{
+    cursor: default;    
+}
+.center .image{
+    clear: both;
+    width: 1120px;
+    padding-top: 40px;
+    margin: auto;
+}
+.center .image dd{
+    display: inline-block;
+    margin: 30px 0 0 27px;
+    width: 160px;
+}
+.center .image dd img{
+    width: 160px;
+    height: 220px;
+}
+.center .image dd:nth-child(6n+1){
+    margin-left: 0px;
+}
+.center .image dd .film-img{
+    height: 220px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.center .image dd .film-title{
+    margin-top: 10px;
+    text-align: center;
+}
+.center .image dd .film-tosee{
+    margin-top: 10px;
+    text-align: center;
+    color: #ffb400;
+}
+.center footer{
+    width: 1120px;
+    margin: 16px auto;
+    text-align: center;
+}
+.center footer ul li{
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    border: #d8d8d8 solid 1px;
+    margin: 0px 4px;
+}
+.center footer ul .li-active{
+    color: #fff;
+    background-color: #ef4238;
+    border-color: #ef4238;
+}
+.center .foot .foot-paging li:hover{
+    border-color: #ef4238;
+}
+.center .foot .foot-paging li a{
+    display: block;
+    padding: 0 10px;
+}
+    

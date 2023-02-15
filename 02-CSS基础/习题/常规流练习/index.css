@@ -1,0 +1,45 @@
+body{
+    padding: 20px 0;
+    background-color: #4d4a40;
+    line-height: 2;
+    min-width: 1000px;
+}
+article{
+    width: 90%;
+    background-color: #fff;
+    margin: auto;
+    padding-top: 30px;
+}
+article header{
+    margin: 0px -34px;
+    background-color: #267890;
+    border: #14414e solid 5px;   
+    text-align: center;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+header h1{
+    font-size: 42px;
+    color: #fff;
+}
+article header .a-color{
+    color: #fff;
+}
+article header .a-color a{
+    text-decoration: underline;
+}
+article header .a-color a:hover{
+    color: red;
+}
+article section{
+    width: 90%;
+    margin: auto;
+}
+article section p{
+    margin: 1em 0px;
+}
+article section h2{
+    font-size: 32px;
+    border-top: 1px dotted;
+    border-bottom: 1px dotted;
+}

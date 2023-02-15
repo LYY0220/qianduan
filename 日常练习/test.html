@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<body>
+    <button class="btn1">btn1</button>
+    <div class="div1"></div>
+    <script>
+        // 绑定对象
+        var btn1 = document.querySelector(".btn1")
+        var div1 = document.querySelector(".div1")
+        // 绑定事件
+        btn1.addEventListener("click",function(){
+            // 创建请求对象 0
+            var test1 = new XMLHttpRequest()
+            // 请求行 初始化 1
+            test1.open("GET","http://127.0.0.1:8000/test1?/a=10") 
+            // 请求体 向服务器发送请求及参数 2 
+            test1.send()
+            // 处理服务器返回结果 3 4
+            test1.onreadystatechange = function(){
+                // 判断服务器返回结果，
+                if(test1.readyState === 4){
+                    // 判断响应状态码，200-299都是成功
+                    if(test1.status >= 200 && test1.status < 300){
+                        // 处理返回数据
+                        div1.innerText = test1.response
+                    }
+                }
+            }
+        })
+    </script>
+
+    <button class="btn2">btn2</button> 
+    <div class="div2"></div>
+    <script>
+        var btn2 = document.querySelector(".btn2")
+        var div2 = document.querySelector(".div2")
+        btn2.addEventListener("click",function(){
+            var test2 = new XMLHttpRequest()
+            test2.open("GET","http://127.0.0.1:8000/test2?a=10&b=20")
+            test2.send()
+            test2.onreadystatechange = function(){
+                if(test2.readyState === 4){
+                    if(test2.status >= 200 && test2.status < 300){
+                        var obj = JSON.parse(test2.responseText)
+                        div2.innerText = obj.a
+                    }
+                }
+            }
+        })
+    </script>
+
+    <button class="btn3">btn3</button>
+    <div class="div3"></div>
+    <script>
+        var btn3 = document.querySelector(".btn3")
+        var div3 = document.querySelector(".div3")
+        btn3.addEventListener("click",function(){
+            var test3 = new XMLHttpRequest()
+            test3.open("GET","http://127.0.0.1:8000/test3?a=test3")
+            test3.send()
+            test3.onreadystatechange = function(){
+                if(test3.readyState === 4){
+                    if(test3.status >= 200 && test3.status < 300){
+                        var obj = JSON.parse(test3.responseText) 
+                        div3.innerText = obj.a 
+                    }
+                }
+            }
+        })
+    </script> 
+
+    <button class="btn4">btn4</button>
+    <div class="div4"></div>
+    <script>
+        var btn4 = document.querySelector(".btn4")
+        var div4 = document.querySelector(".div4")
+        btn4.addEventListener("click",function(){
+            var test4 = new XMLHttpRequest()
+            test4.open("GET","http://127.0.0.1:8000/test4?a=test4")
+            test4.send()
+            test4.onreadystatechange = function(){
+                if(test4.readyState === 4){
+                    if(test4.status >= 200 && test4.status < 300){
+                        var obj = JSON.parse(test4.responseText)
+                        div4.innerText = obj.a
+                    }  
+                }
+            }
+        })
+    </script>
+
+    <button class="btn5">btn5</button>
+    <div class="div5"></div>
+    <script>
+        var btn5 = document.querySelector(".btn5")
+        var div5 = document.querySelector(".div5")
+        btn5.addEventListener("click",function(){
+            var test5 = new XMLHttpRequest()
+            test5.open("GET","http://127.0.0.1:8000/test5?a=test5")
+            test5.send()
+            test5.onreadystatechange =function(){
+                if(test5.readyState === 4){
+                    if(test5.status >= 200 && test5.status < 300){
+                        var obj = JSON.parse(test5.responseText)
+                        div5.innerText = obj.a 
+                    }
+                }
+            }
+        })
+    </script>
+
+    <button class="btn6">btn6</button>
+    <div class="div6"></div>
+    <script>
+        var btn6 = document.querySelector(".btn6")
+        var div6 =document.querySelector(".div6")
+        btn6.addEventListener("click",function(){
+            var test6 =new XMLHttpRequest()
+            test6.open("GET","http://127.0.0.1:8000/test6?a=test6")
+            test6.send()
+            test6.onreadystatechange = function(){
+                if(test6.readyState===4){
+                    if(test6.status >= 200 && test6.status <300){
+                        var obj = JSON.parse(test6.responseText)
+                        div6.innerText = obj.a
+                    }
+                }
+            }
+        })
+    </script>
+
+    <button class="btn7">btn7</button>
+    <div class="div7"></div>
+    <script>
+        var btn7 = document.querySelector(".btn7")
+        var div7 = document.querySelector(".div7")
+        btn7.addEventListener("click",function(){
+            var test7 = new XMLHttpRequest()
+            test7.open("GET","http://127.0.0.1:8000/test7?a=test7")
+            test7.send()
+            test7.onreadystatechange = function(){
+                if(test7.readyState===4){
+                    if(test7.status>=200 && test7.status < 300){
+                        var obj = JSON.parse(test7.responseText)
+                        div7.innerText = obj.a
+                    }
+                }
+            }
+        })
+    </script> 
+
+    <button class="btn8">btn8</button>
+    <div class="div8"></div>
+    <script>
+        var btn8= document.querySelector(".btn8")
+        var div8 = document.querySelector(".div8")
+        btn8.addEventListener("click",function(){
+            var test8 = new XMLHttpRequest()
+            test8.open("GET","http://127.0.0.1:8000/test8?a=test8")
+            test8.send()
+            test8.onreadystatechange = function(){
+                if(test8.readyState === 4){
+                    if(test8.status >= 200 && test8.status < 300){
+                        var obj = JSON.parse(test8.responseText)
+                        div8.innerText = obj.a
+                    }
+                }
+            }
+        }) 
+    </script>
+
+    <button class="btn9">btn9</button>
+    <div class="div9"></div>
+    <script>
+        var btn9 = document.querySelector(".btn9")
+        var div9 = document.querySelector(".div9")
+        btn9.addEventListener("click",function(){
+            var test9 = new XMLHttpRequest()
+            test9.open("GET","http://127.0.0.1:8000/test9?a=test9")
+            test9.send()
+            test9.onreadystatechange = function(){
+                if(test9.readyState === 4){
+                    if(test9.status >=200 && test9.status < 300){
+                        var obj = JSON.parse(test9.responseText)
+                        div9.innerText = obj.a
+                    }
+                }
+            }
+        })
+    </script> 
+
+    <button class="btn10">btn10</button>
+    <div class="div10"></div>
+    <script>
+        var btn10 = document.querySelector(".btn10")
+        var div10 = document.querySelector(".div10")
+        btn10.addEventListener("click",function(){
+            var test10 = new XMLHttpRequest()
+            test10.open("GET","http://127.0.0.1:8000/test10?a=test10")
+            test10.send()
+            test10.onreadystatechange = function(){
+                if(test10.readyState === 4){
+                    if(test10.status >= 200 && test10.status < 300){
+                        var obj = JSON.parse(test10.responseText)
+                        div10.innerText = obj.a
+                    }
+                }
+            }
+        })
+    </script>
+
+    <button class="btn11">btn11</button>
+    <div class="div11"></div>
+    <script>
+        var btn11 = document.querySelector(".btn11")
+        var div11 = document.querySelector(".div11")
+        btn11.addEventListener("click",function(){
+            var test11 = new XMLHttpRequest()
+            test11.open("GET","http://127.0.0.1:8000/test11?a=test11")
+            test11.send()
+            test11.onreadystatechange = function(){
+                if(test11.readyState === 4){
+                    if(test11.status >= 200 && test11.status < 300){
+                        var obj = JSON.parse(test11.responseText)
+                        div11.innerText = obj.a
+                    }
+                }
+            }
+        }) 
+    </script>
+
+    <button class="btn12">btn12</button>
+    <div class="div12"></div>
+    <script>
+        var btn12= document.querySelector(".btn12")
+        var div12 = document.querySelector(".div12")
+        btn12.addEventListener("click",function(){
+            var test12 = new XMLHttpRequest()
+            test12.open("GET","http://127.0.0.1:8000/test12?a=test12")
+            test12.send()
+            test12.onreadystatechange = function(){
+                if(test12.readyState === 4){
+                    if(test12.status >= 200 && test12.status < 300){
+                        var obj = JSON.parse(test12.responseText)
+                        div12.innerText = obj.a
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html> 

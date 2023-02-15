@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./canvas.css">
+</head>
+<body>
+    <!-- canvas，画布元素 -->
+    <!-- 
+    描述：
+        ie9+，默认宽300px，高150px
+        canvas只是创建了一个固定大小的画布，绘制内容需要找到渲染上下文
+        canvas元素有一个getContext()方法，获取渲染上下文和绘画功能，只有一个参数上下文格式，一般是"2d"
+        只有矩形可以通过原生代码生成，其他图形的绘制都至少需要生成一条路径
+
+    矩形：
+        fillRect(x,y,width,height)，矩形填充
+        strokeRect(x,y,width,height)，矩形边框
+        clearRect(x,y,width,height)，透明矩形
+ 
+    样式：
+        fillStyle属性表示填充颜色
+        strokeStyle属性表示边框颜色
+        lineWidth属性表示边框粗细
+        lineJoin属性表示线条接合处样式，默认miter直角，round圆角，bevel斜角
+    
+    路径：
+        moveTo(x,y)，路径起始点
+        lineTo(x,y)，下一个路径点
+        closePath()，闭合路径
+        fill()，内部填充，自动闭合路径
+        stroke()，绘制边框，不会自动闭合路径
+        lineCap属性表示末端样式，默认butt方形，round圆形，square增加一段方形
+        arc(x,y,r,star,end,boolean)，圆形路径
+        arcTo(x1,y1,x2,y2,r)，曲线路径
+
+    转换：
+        translate(x,y)，修改参考原点
+        rotate(deg*Math.PI/180)，旋转角度
+        scale(x,y)，缩放
+
+    格式：
+        save()，样式压入栈
+            放置样式
+        beginPath()，绘制下一个路径时，清空之前路径
+            放置路径
+        restore()，样式栈弹出
+        
+    插入图片：
+        drawImage(image，x，y，width，height)，插入图片
+        createPattern(image,参数)，设置背景图，参数可选repeat,repeat-x,repeat-y,no-repeat
+            一般设置背景图会将createPattern作为返回对象赋值给fillstyle
+        var 返回值 = createLinearGradient(x1,y1,x2,y2)，线性渐变起点与终点
+        返回值.addColorStop(0~1颜色位置，color)，线性渐变颜色与位置，可以写多个
+        createRadialGradient(x1,y1,r1,x2,y2,r2)，径向渐变的内外圆
+
+    插入文字：
+        fillText(text,x,y)，指定位置填充文本
+        strokeText(text,x,y)，指定位置绘制文本框
+        font = 字体大小 字体，指定字体属性
+        textAlign = left/right/center，居中时是根据x居中，一半左一半右
+        textBaseline = top/middle/bottom，垂直位置 
+        measureText()方法返回文本尺寸信息
+        shadowOffsetX，shadowOffsetY属性表示文字阴影
+        shadowBlue表示阴影模糊程度
+        shadowColor表示阴影颜色
+
+    像素操作：
+        getImageData(x,y,w,h)，获取一块画布对象，x，y左上角坐标，w，h矩形区域宽高
+        对象中包括：width图片像素宽度，height图片像素高度，data所有像素rgba四个值的数组
+        马赛克效果，获取一个像素点颜色，周围像素点颜色与他相同
+
+    
+    
+    
+    
+    -->
+    <canvas class="test1" width="200" height="200">填充矩形</canvas>
+    <canvas class="test2" width="200" height="200">矩形边框</canvas>
+    <canvas class="test3" width="200" height="200">透明矩形</canvas>
+    <canvas class="test4" width="200" height="200">直线路径</canvas>
+    <canvas class="test5" width="200" height="200">曲线路径</canvas>
+    <video controls>
+        <source src="./../01-HTML基础/video.mp4">
+    </video>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="./canvas.js"></script>
+</body>
+</html>

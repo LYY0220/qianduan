@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git</title>
+</head>
+<body>
+    <!-- 
+    Git:
+        简介:
+            免费开源的分布式版本控制工具 易学习 性能好
+            版本控制:记录文件修改历史记录,可以查看历史版本,方便版本切换
+            工作机制:工作区 -- git add -> 暂存区 -- git commit -> 本地库 -- git push -> 远程库
+                工作区与暂存区内容可删 本地库文件不可删
+            代码托管中心(远程库)：基于网络服务器的远程代码仓库
+                局域网：GitLab
+                互联网：GitHub(官方外网)        Gitee码云(国内网站)
+            下载安装：https://git-scm.com/
+        
+        常用命令：
+            设置用户名              git config --global user.name 用户名
+            设置邮箱                git config --global user.email 邮箱
+            初始化本地库            git init
+
+            查看本地库状态          git status  红：工作区  绿：暂存区
+            查看版本信息            git reflog
+            查看版本信息-详         git log
+            查看当前版本文件        cat 文件
+            切换版本                git reset --hard 版本号 
+
+            添加文件到暂存区        git add 文件
+            提交到本地库            git commit -m "版本信息" 文件
+            删除暂存区文件          git rm --cached 文件
+
+        git分支：
+            同时推行多个功能开发，提高开发效率，互不干扰，不会影响其他分支
+            查看当前分支            git branch -v
+            创建分支                git branch "分支名"
+            切换分支                git checkout 分支名
+            合并其他正常分支         git merge 分支名
+            合并其他冲突分子       
+                git merge 分支名
+                手动修改文件冲突部分
+                添加文件到暂存区
+                提交本地库，不能带文件名
+
+        gitHub：
+            地址：https://github.com/
+            查看当前远程地址别名     git remote -v
+            设置远程地址别名         git remote add 别名 远程地址
+            本地分支推送远程库       git push 别名 分支名
+            拉取远程库              git pull 别名 分支
+            克隆远程库到本地         git clone 远程地址
+
+
+     -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

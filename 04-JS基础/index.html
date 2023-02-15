@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS基础</title>
+</head>
+<body>
+    <!-- js -->
+    <!-- 
+        js定义：javascript是一种高级编程语言，也是运行在客户端的脚本语言，现在也可以基于node.js技术在进行服务器端编程
+
+        脚本语言：不需要编译，运行过程有js解释器逐行来进行解释并执行
+
+        用途：
+            1.表单动态验证
+            2.网页特效
+            3.服务端开发（node.js）
+            4.桌面程序（electron）
+            5.app（cordova）
+            6.控制硬件-物联网（ruff）
+            7.游戏开发（cocos2d-js）
+
+        执行js过程：
+            浏览器由渲染引擎和js引擎两部分组成，渲染引擎解析html和css，js引擎解析js
+            js引擎运行代码时会逐行解释每一句js源码转换为机器语言，然后有计算机执行机器语言
+            
+        js组成部分：
+            1.ECMASCRIPT，规定了js的编程语法与基础核心知识，是所有浏览器厂商共同遵守的一套js语法工业标准
+            2.DOM，页面文档对象模型，通过DOM提供的接口可以对页面上的各种元素进行操作
+            3.BOM，浏览器对象模型，通过BOM可以操作浏览器敞口，例如弹出框，控制浏览器跳转，获取分辨率等
+
+        js书写位置：
+            1.行内，直接写到元素内部，例如使用onclick="语句"
+            2.内嵌，写在script元素中
+            3.外部，写在独立的js文件中，在script元素中使用src引用
+
+        js注释：
+            1.//单行注释 快捷键:ctrl + /
+            2./*多行注释*/ 快捷键：shift + alt + A
+
+        js的三个输入输出语句：
+            1.alert()，在浏览器弹出警示框
+            2.prompt()，在浏览器弹出输入框，用户可以输入
+            3.console.log()，在浏览器控制台打印信息
+     -->
+
+    <!-- 变量 -->
+    <!-- 
+        变量定义：程序在内存中申请一块用来存放数据的空间
+
+        变量初始化：var 变量名 = '值';
+
+        变量语法扩展：
+            1.更新变量，一个变量被重新赋值后，它原有的值会被覆盖，变量值将以最后一次赋值为准
+            2.声明多个变量，var 变量1名 = '变量1值' , 变量2名 = '变量2值';
+            3.声明变量特殊情况：
+                1.只声明，不赋值，引用会显示undefined，未定义的
+                2.不声明，不赋值，引用会报错
+                3.不声明直接赋值，可以正常使用
+
+        变量命名规范：
+            1.由字母、数字、下划线、美元符号组成
+            2.严格区分大小写
+            3.不能以数字开头
+            4.不能是关键字、保留字，例如var、for、while、name等
+            5.变量名需要有意义
+            6.使用驼峰命名法，首字母小写，后面单词首字母大写
+            7.推荐翻译网站有道
+     -->
+
+    <!-- 数据类型 -->
+    <!-- 
+        数据类型简介：
+            在计算机中不同数据类型所需占用的空间不同，为了充分利用空间，
+            方便把数据分成所需内存大小不同的数据，于是定义了数据类型，
+            js数据类型是只有程序在运行过程中，根据等号右边的值来确定的，
+            js是动态语言，数据类型是可以变化的。
+
+        简单数据类型：
+            1.number，数字型，包括整形值和浮点型值，例如11、1.1，
+                数字前面加0表示8进制，数字前面加0x表示16进制
+                number.max_value表示数据类型最大值，超过用Infinjty表示无穷大
+                number.mim_value表示数据类型最小值，小于用-Infinjty表示无穷小
+                NaN表示非数字，isNaN(值)可以判断是否是数字型，返回布尔类型
+
+            2.string，字符串型，字符串类型需要带引号
+                单引号与双引号穿插使用，
+                转义符 \n表示换行   \\表示斜杠  \'表示单引  \"表示双引  \t表示tab缩进   \b表示空格
+                字符串长度 .length
+                字符串拼接 多个字符串之间可以用 + 进行拼接，字符串与其他类型拼接得到的是字符串
+
+            3.boolean，布尔型，包括真true相当于1、假false相当于0
+                可以与数字类型运算得到数字类型
+            
+            4.undefind，声明变量但是没有赋值或者声明的值就为undefind
+                与数字类型运算得到NaN
+            
+            5.null，空，声明变量为空
+                与数字类型运算得到数字类型 
+            
+            检测数据类型 typeof 数据
+
+            数据类型转换 
+                转换成字符串string
+                    1.变量.toString()
+                    2.String(变量)
+                    3.隐式转换，使用 加号 拼接字符
+
+                转换成数字型number
+                    1.转换整数，parseInt(变量)
+                    2.转换浮点型，parseFloat(变量)
+                    3.强制转换，Number(变量)
+                    4.隐式转换，使用 - * / 运算
+
+                转换成布尔型boolean
+                    1.Bolean(变量)，代表空、否定的值会被转换成false，例如''、0、NaN、null、undefined，其他转换成true
+    -->
+
+    <!-- 运算符 -->
+    <!-- 
+        运算符定义：也称作操作符，用于实现赋值、比较和执行算数运算等功能的符号
+
+        算数运算符：+ - * / %，浮点型运算会出现精度问题
+
+        递增(减)运算符：例如num=1
+            ++num num先加一，在返回++num值 num=2 ++num=2
+            --num num先减一，后返回--num值 num=0 --num=0
+            num++ 先返回num++值，num再加一 num++=1 num=2
+            num-- 先返回num--值，num再减一 num--=1 num=0
+
+        比较运算符：>   <   >=  <=  ==  !=  === !===
+            ==会把变量转换成数值型再计较
+            ===要求变量值和数据类型一致
+
+        逻辑运算符
+            逻辑与&&：全true才算true，一个false就是false
+            逻辑或||：全是false才算false，一个true就是true
+            逻辑非!：取反值
+            短路运算逻辑与：返回第一个结果为false的表达式，后面表达式不执行
+            短路运算逻辑或：返回第一个结果为true的表达式。后面表达式不执行
+        
+        赋值运算符：=   +=  -=  *=  /=  %=
+
+        运算符优先级：
+            1.小括号       （）
+            2.一元运算符    ++ -- ！
+            3.算数运算符    先 * / %，再 + -
+            4.关系运算符    > >= < <=
+            5.相等运算符    == != === !===
+            6.逻辑运算符    先&&后||
+            7.赋值运算符    =
+            8.逗号运算符    ，
+    -->
+
+    <!-- 流程控制 -->
+    <!-- 
+        定义：流程控制分为顺序结构、分支结构、循环结构
+
+        顺序结构：没有特定语法，程序按顺序执行
+
+        分支结构：
+            if分支语句语法：条件为true执行其中语句
+                if(条件表达式1){
+                    表达式
+                }else if(条件表达式2){
+                    表达式
+                }else{
+                    表达式
+                }
+            
+            三元表达式语法：条件表达式为true则返回表达式1，否则返回表达式2
+                条件表达式 ? 表达式1 : 表达式2
+            
+            switch分支语句语法：根据表达式结果确定执行语句，比较时需要全等
+                switch(表达式){
+                    case 结果1:
+                        执行语句
+                        break；
+                    case 结果2:
+                        执行语句
+                        break；
+                    default：
+                        执行语句
+                }
+
+            for循环语句语法：
+                for(初始化变量; 条件表达式; 操作表达式){
+                    循环体
+                }
+            
+            多重for循环语句语法：
+               for(外层初始化变量; 外层条件表达式; 外层操作表达式){
+                   for(内层初始化变量; 内层条件表达式; 内层操作表达式){
+                        循环体
+                    }  
+                } 
+            
+            while循环语句语法：循环体中要有操作表达式，防止死循环
+                while(条件表达式){
+                    循环体
+                }
+            
+            do while循环语句语法：会先执行一次循环体
+                do{
+                    循环体
+                }while(条件)
+
+            continue：跳出此次循环
+            break：跳出此层循环
+     -->
+
+    <!-- 数组Array -->
+    <!-- 
+        定义：一组数据的集合，存储在单个变量下的优雅方式
+
+        创建数组：
+            1.var 数组名 = new Array(参数) 只有一个对象表示数组长度，多个参数表示数组内容
+            2.var 数组名 = [变量1,变量2，变量3]
+
+        遍历数组：
+            for(var i=0; i<数组名.length; i++){
+                console.log(数组名[i])
+            }
+        
+        数组新增元素：
+            1.通过length修改数组长度添加元素
+            2.通过数组下标添加元素
+
+        冒泡排序：数组按照一定顺序排序
+            双重for循环，外层循环每个元素，内层循环每个元素比较次数 
+    -->
+
+    <!-- 函数 -->
+    <!-- 
+        定义：封装一段可以被重复执行调用的代码块，可以让大量代码重复使用
+
+        声明函数：分为命名函数与匿名函数两种
+            function 函数名(形参，形参){
+                函数体
+            }
+            var 变量名 = function(){}
+        
+        调用函数：函数名(实参，实参)
+
+        函数返回值；return 返回值；
+            相当于 函数名() = 返回值，多个值时只能返回最后一个值，
+            return后面的代码不会运行
+            没有return时 函数返回值为undefined
+
+        arguments：一个存放函数所有实参的伪数组，可以按照数组方式遍历
+     -->
+
+    <!-- 作用域 -->
+    <!-- 
+        定义：代码起作用和效果的范围，作用域可以提高程序的可靠性，减少命名冲突
+
+        分类：es6之前分为全局作用域和局部作用域
+            全局作用域：整个script标签或者一个单独的js文件
+            局部作用域：在函数内部，只在函数内部起效果和作用
+            全局变量：在全局作用域中声明的变量，在任何地方都能使用，浏览器关闭才会被销毁，占内存
+            局部变量，在函数中声明的变量、函数的形参，只在函数内部使用，代码块执行会被初始化，结束会被销毁，节省空间
+        
+        作用域链：内部函数访问外部函数的变量，采取的是链式查找的方式来决定取那个值，这种结构我们称为作用域链，采用就近原则
+     -->
+
+    <!-- 预解析 -->
+    <!-- 
+        定义：js引擎运行js分为两步，预解析 与 代码执行    
+            预解析：js引擎会把js中所有 var 还有 function 提升到当前作用域的最前面
+                变量提升：把所有的变量声明提升到当前作用域最前面，不提升赋值操作
+                函数提升：把所有函数声明提升到当前作用域最前面，不调用函数
+            代码执行：按照代码书写顺序从上往下执行
+    -->
+
+    <!-- 对象 -->
+    <!-- 
+        定义：对象是一组无序的相关属性和方法的集合
+
+        创建对象：
+            1.利用对象字面量创建对象
+                var 对象名 = {
+                    属性名：属性值，
+                    方法名：function(){
+                        函数体
+                    };
+                }
+                调用对象：对象名.属性名     对象名['属性名']    对象名.方法名()  
+            
+            2.利用 new Object 创建对象
+                var 对象名 = new Object()
+                对象名.属性名 = 属性值;
+                对象名.方法 = function(){
+                    函数体
+                }
+                调用对象：对象名.属性名     对象名['属性名']    对象名.方法名() 
+
+            3.利用构造函数创建对象：把对象里面一些相同的属性和方法抽取出来封装到函数里面
+                构造函数不需要return，调用函数返回的是一个对象
+                构造函数首字母要大写
+                调用构造函数必须使用 new
+
+                function 构造函数名(形参1，形参2){
+                    this.属性值1 = 形参1；
+                    this.属性值2 = 形参2；
+                    this.方法1 = function(){}
+                }
+                var 对象名 = new 构造函数名(实参1，实参2);
+                调用对象：对象名.属性名     对象名['属性名']    对象名.方法名() 
+        
+        遍历对象：
+            for(var k in 对象名){
+                consloe.log(k)  属性名
+                console.log(对象名[k])  属性值
+            }
+    -->
+
+    <!-- 内置对象 -->
+    <!-- 
+        定义：js语言自带的一些对象，提供一些基本、常用的功能，属性和方法
+
+        Math数学对象：不是一个构造函数，不需要用new调用，可以直接使用里面的属性和方法
+            圆周率：Math.PI
+            最大值：Math.max()
+            最小值：Math.min()
+            绝对值：Math.abs()  隐式转换，会把 string型 转换成 number型
+            取整：Math.floor()  向下取整，去尾法
+            取整：Math.ceil()   向上取整，进一法
+            取整：Math.round()  四舍五入
+            随机数：Math.random()   取0~1之间的小数
+        
+        Date日期对象：是一个构造函数，需要使用new调用
+            var date = new Date()
+            如果没有参数，返回系统当前时间
+            日期参数常见写法：
+                1.数字型：2022,09,19
+                2.字符型：2022-9-19 1:25:1 或者 2022/9/19 1:27:1
+            获取年：getFullYear()
+            获取月：getMonth()  会比实际月份小1
+            获取日：getDate()
+            获取星期：getDay()
+            获取时：getHours()
+            获取分：getMinutes()
+            获取秒：getSeconds()
+            时间戳：获取1970年1月1日到现在过得总毫秒
+                1.obj.valueof()
+                2.obj.getTime()
+                3.+new Date()
+                4.Date.now()    H5新增，ie低版本不支持
+
+        Array数组
+            判断是否为数组
+                1.数组名 instanceof Array   返回boolear类型
+                2.Array.isArray(数组名)     返回boolear类型，H5新增，ie9以上支持
+            
+            添加元素：
+                1.数组名.push(参数1，参数2)，在数组末尾添加新元素，push()方法返回值为数组长度
+                2.数组名.unshift(参数1，参数2),在数组开头添加元素，unshift()方法返回值为数组长度
+            
+            删除元素：
+                1.数组名.pop()，删除数组最后一个元素，返回值为删除的元素
+                2.数组名.shift()，删除数组第一个元素，返回值为删除的元素
+            
+            翻转数组：数组名.reverse()
+
+            数组排序(冒泡排序)：
+                1.升序：数组名.sort(function(a,b){return a-b})
+                2.降序：数组名.sort(function(a,b){return b-a})
+            
+            获取索引：
+                1.数组名.indexOf(数组元素)，返回第一个满足条件的元素索引，都不满足返回-1，从前往后找
+                2.数组名.lastIndexOf(数组元素)，返回第一个满足条件的元素索引，都不满足返回-1，从后往前找
+            
+            数组转换字符型
+                1.数组名.toString()     使用逗号将元素分开
+                2.数组名.join(分割符)    使用分隔符将元素分开，没有则使用逗号分开
+            
+            数组连接：数组1名.concat(数组2名)   返回一个新的数组，不影响原数组
+
+            数组截取：数组名.slice(开始索引，结束索引)，会创建一个新的数组，不影响原数组
+                1.如果没有参数，则没有变化
+                2.只有一个参数表示从该参数索引到最后，负值表示从后截取
+                3.两个值表示从开始索引截取到结束索引，不包括结束索引
+            
+            删除或替换元素：数组名.splice(开始索引，删除个数，添加元素)，会改变原数组，返回值为被删除的数组
+                1.开始索引为负表示从后数，从-1开始
+                2.删除个数是从开始索引处开始删除，包括开始索引的元素
+                3.添加元素从开始索引处添加
+        
+        String字符串
+            字符串的不可变：
+                字符串的值是不可变的，可以改变内容是因为改变了地址，是在内存中新开辟了一个空间
+                由于字符串不可改变，大量拼接字符串会发生效率问题
+                String的所有方法都会返回一个新的字符串
+            
+            获取字符索引号：
+                1.字符串名.indexOf(要查找的字符，开始位置索引时)，返回找到的首个字符索引，从前往后找，没有返回-1
+                2.字符串名.lastIndexOf(要查找的字符，开始位置索引时)，返回找到的首个字符索引，从后往前找，没有返回-1
+
+            根据索引返回字符
+                1.字符名.charAt(索引号)         可用于遍历字符串
+                2.字符串名.charCodeAt(索引号)   可用于判断用户按下了哪个键
+                3.字符串名[索引号]              与charCodeAt等效，H5新增，ie8以下不支持
+            
+            字符串拼接：字符串1名.concat(字符串2名)     一般使用 + 拼接
+
+            字符串截取：
+                1.substr(起始位置，截取长度)
+                2.slice(起始位置，结束位置)     不包括结束位置，可以负值
+                3.substring(起始位置，结束位置) 不包括结束位置，不可以负值
+
+            替换字符：replace('被替换的字符'，'替换的字符')     只会替换第一个满足条件的字符
+
+            字符串转换数组：.split('分隔符')
+
+            字符转换大写：toUpperCase()
+            
+            字符转换小写：toLowerCase()
+     -->
+
+    <!-- 简单数据类型与复杂数据类型 -->
+    <!-- 
+        简单数据类型：
+            又叫做基本数据类型或者值类型
+            在存储时变量中储存的是值本身
+            例如string、number、boolean、undefined、null
+        
+        复杂数据类型：
+            又叫做引用类型
+            存储时变量中储存的仅仅是地址
+            通过new关键字创建的对象，如object、array、date等
+
+        栈和堆
+            简单数据类型是存放在栈里面，直接开辟一个空间存放的是值
+            复杂数据类型是在栈里面存放地址，十六进制表示，然后这个地址指向堆里面的数据
+
+
+        基本包装类型：把简单数据类型包装成复杂数据类型，包括三个特殊的引用类型string、number、boolean
+            var str = "aaa"
+            包装过程：
+            1.生成临时变量，把简单类型包装为复杂数据类型
+                var temp = new String('aaa')
+            2.赋值给声明的变量
+                str = temp
+            3.销毁临时变量
+                temp = null
+     -->
+
+    <!-- -------------------------------------------------------------------------------------------- -->
+    <!-- Web API -->
+    <!-- 
+        定义：Web API主要是针对于浏览器提供的接口，主要用于对浏览器做交互效果
+            web API很多都是方法，一般会有函数的传参和返回值
+            分为 页面文档对象DOM 和 浏览器对象BOM
+     -->
+
+    <!-- DOM事件基础  -->
+    <!-- 
+        定义：文档对象模型，W3C组织推荐的处理可扩展标记语言的标准编程接口
+            W3C已经定义了一系列的DOM接口，通过这些接口可以改变网页的内容，结构和样式
+            DOM对象分为文档、元素、节点
+
+        文档：一个页面就是一个文档，DOM中使用document表示
+        元素：页面中的标签都是元素，DOM中使用element表示
+        节点：网页中所有内容都是节点，包括标签、属性、文本、注释等，DOM中使用node表示
+
+        获取元素：
+            1.通过元素id获取元素：getElementById('元素id')
+                id是大小写敏感的字符串
+                返回的是一个元素对象，console.dir可以打印整个对象
+
+            2.通过元素标签获取对象：getElementByTagName('标签')
+                返回的是一个伪数组
+                父元素必须是一个对象
+            
+            3.通过元素类名获取对象：getElementByClassName('类名')
+                返回的是一个伪数组
+                H5新增，ie8以上支持
+
+            4.通过选择器获取对象： 
+                返回指定选择器的第一个对象：querySelector('选择器')
+                返回指定选择器的全部对象集合：querySelectorAll('选择器')
+                H5新增，ie8以上支持
+
+            5.通过元素属性获取自定义对象：
+                element.getAttribute('属性名')  返回一个属性值
+                element.dataset                 H5新增，一个集合，存放所有以data开头的自定义属性
+                element.dataset.属性名          H5新增，获取以data开头的自定义属性名  ie11支持
+                element.dateset['属性名']       H5新增，获取以data开头的自定义属性名  ie11支持
+                
+
+            6.获取body元素：document.body  返回body对象
+
+            7.获取html元素：ducument.doucumentElement    返回html对象
+
+        事件：
+            定义：事件是可以被js侦测到的行为，相当于响应机制
+                事件由三部分组成：事件源    事件类型    事件处理程序
+            
+            事件源：事件被触发的对象
+
+            事件类型：事件触发的条件
+                1.鼠标左键点击：onclick
+                2.鼠标经过：onmouseover     鼠标经过自身触发，经过子盒子还会触发
+                  鼠标经过：onmouseenter    鼠标经过自身会触发，经过子盒子不会触发，不会冒泡
+                3.鼠标离开：onmouseout      冒泡
+                  鼠标离开：onmouseleave    不冒泡
+                4.鼠标按下：onmousedown
+                5.鼠标弹起：onmouseup
+                6.表单获取焦点：onfocus
+                7.表单失去焦点：onblue
+                
+
+            事件处理程序：通过一个函数赋值的方式完成
+
+        操作元素：
+            修改元素内容：
+                1.element.innerText = "替换内容"：非标准    去除html标签不识别    会去掉空格与换行   
+                2.element.innerHTML = "替换内容"：W3C标准   保留html标签          保留空格与换行
+
+            修改元素属性：可修改的属性有src、href、id、alt、title
+                element.元素属性 = '新的属性'    用于内置属性值
+                element.setAttribute('属性名'，'属性值')   用于自定义的属性，H5规定自定义属性名需要以data-开头
+                element.removeAttribute('属性名') 移除属性
+            
+            修改表单元素属性：可修改的属性有type、value、checked、selected、disabled
+                修改方式与修改元素属性一致
+        
+            修改元素样式：
+                getComputedStyle(obj,null)      获取样式表，ie9+
+                obj.currentStyle          获取样式表，ie8-
+                element.style.样式名 = '新样式'
+                element.className = '新类名'    会覆盖原先的类名
+                属性名需要驼峰命名
+                js修改style样式，产生的是行内样式，css优先级高
+            
+        节点操作：
+            定义：节点操作至少有 节点类型nodeType 节点名称nodeName 节点值nodeValue 三种基本属性
+
+            节点类型：实际开发中节点操作主要操作的元素节点
+                1.元素节点：nodeType为1
+                2.属性节点：nodeType为2
+                3.文本节点：nodeType为3
+            
+            节点操作：
+                1.element.parentNode    获取离元素最近的父级节点，找不到返回null
+                2.element.childNodes    获取获取所有子元素，包括元素节点、文本节点等，一般不使用
+                3.element.children      非标准，获取所有子元素，常用
+                4.element.firstChild    获取第一个子节点，包括文本节点、元素节点
+                5.element.lastChild     获取最后一个子节点，包括文本节点、元素节点
+                6.element.firstElementChild     获取第一个元素节点  找不到返回null  ie9以上支持
+                7.element.lastElementChild      获取最后一个元素节点    找不到返回null  ie9以上支持
+                8.element.nextSibling   获取下一个兄弟节点，包括文本节点、元素节点，找不到返回null
+                9.element.previousSibling       获取上一个兄弟节点，包括文本节点、元素节点，找不到返回null
+                10.element.nextElementSibling   获取下一个兄弟元素节点，ie9以上不支持
+                11.element.previousElementSibling   获取上一个兄弟元素节点，ie9以上不支持
+                12.document.cerateElement('元素标签')   创建一个元素
+                13.父元素对象.appendChild(要添加的子元素对象)    在父元素中最后面添加一个子元素
+                14.父元素对象.insertBefore(要添加的子元素对象，指定对象)    在指定对象前添加一个子元素对象
+                15.父元素对象.removeChild(子元素)   在父元素中删除一个子元素
+                16.元素对象.cloneNode()     复制节点，括号中为空或者为false是浅拷贝，只复制节点，不复制子节点，true全复制
+        
+        三种创建元素方式区别：
+            1.document.write('元素完整标签')    如果页面文档流加载完毕，调用会导致页面重绘，只剩创建的元素   
+            2.document.innerHTML    使用数组添加时间最快，使用字符串拼接速度最慢
+            3.document.createElement('元素标签')    速度比字符串拼接块，比数组添加慢
+            
+     -->
+     
+    <!-- DOM元素操作整理 -->
+    <!-- 
+        创建：document.write    innerHTML   createElement
+
+        增加：appendChild   insertBefore
+
+        删除：removeChild
+
+        修改：
+            1.修改元素属性：src、href、title、id、alt
+            2.修改元素内容：innerHTML、innerText
+            3.修改表单属性：type、value、checked、selected、disabled
+            4.修改元素样式：style、calssName
+        
+        查找：
+            1.DOM API：getElementById()     getElementByTagName()
+            2.H5新增：querySelector()       querySelectorAll()
+            3.节点：parentNode  children    previousElementSibling  nextElementSibing
+
+        自定义属性：setAttribute()  getAttribute()  removeArrtibute()
+
+        鼠标事件：oncilck   onmouseover onmouseout  onfocus onblur  onmouseleave    onmouseup   onmousedown
+     -->
+
+    <!-- DOM事件高级 -->
+    <!-- 
+        注册事件、绑定事件：
+            定义：给元素添加事件，分为 传统方式 和 方法监听注册方式
+                传统方式：使用on开头的事件，同一元素同一事件只能设置一个处理函数，后面处理函数会覆盖前面处理函数
+                方法监听注册方式：元素对象.addEventListener('事件类型'，处理函数，可选参数) 可以使用多次，事件类型不加on，ie9+
+                方法监听注册方式：元素对象.attachEvent('事件类型'，处理函数，boolean参数)    事件类型加on    ie9-
+        
+        删除事件、解绑事件：
+            传统方式解绑：元素对象.事件类型 = null  例如div.onclick = null
+            方法监听方式解绑：元素对象.removeEventListener('事件类型'，函数名)
+
+        事件流：
+            定义：事件流描述的是页面中接受事件的顺序
+            传播过程：
+                1.捕获阶段：从document依次往下查找到事件源
+                2.当前目标阶段：执行目标事件
+                3.冒泡阶段：执行完后依次返回到document
+            用法：
+                方法监听事件方式中参数，如果是false或者不写则表示事件冒泡阶段调用程序，true表示捕获阶段调用程序
+                onblur  onfocus onmouseenter    onmouseleave没有冒泡阶段
+            
+        事件对象：
+            定义：事件发生后，跟事件相关的一系列信息数据的集合都放在这个对象里面，这个对象就是事件对象，它有很多属性和方法
+                包括谁绑定了这个事件，鼠标或者键盘触发事件会得到鼠标或者键盘信息
+            使用：放在函数的括号中，例如function(even){}
+            兼容性：ie678需要使用window.event获取   解决：evev = evev || window.event
+            事件对象常用属性：
+                e.target：获取触发事件的元素    this是获取绑定事件的元素
+                e.type：获取事件类型
+                e.preventDefault()：阻止默认事件，比如不让链接跳转，ie9+
+                e.stopPropagation()：阻止事件冒泡，ie9+
+                e.cancelBubble：值为true时阻止冒泡，ie678
+            事件委托：
+                原理：不要给每个字节点设置事件监听器，而是把事件监听器设置在父元素上，利用冒泡原理影响到设置的每个子元素
+                作用：不需要循环添加事件，只操作依次DOM，提高程序的性能
+            鼠标事件扩展：
+                contextmenu     右键菜单            配合e.preventDefault()可以阻止右键出现菜单
+                selectstart     开始选中文字     配合e.preventDefault()可以阻止选中文字
+            
+            鼠标事件对象：
+                e.clientX：返回鼠标相当于视口的x坐标
+                e.clientY：返回鼠标相当于视口的y坐标
+                e.pageX：返回鼠标相对于文档页面的x坐标，ie9+
+                e.pageY：返回鼠标相对于文档页面的y坐标，ie9+
+                e.screenX：返回鼠标相对于电脑屏幕的x坐标
+                e.screenY：返回鼠标相对于电脑屏幕的y坐标
+
+            键盘事件：
+                onkeyup：某个键盘被松开时触发
+                onkeydown：某个键盘被按下时触发
+                onkeypress：某个键盘被松开时触发，但不识别功能键
+                执行顺序：onkeydown -> onkeypress -> onkeyup
+            
+            键盘事件对象：
+                e.keyCode：获取按键的ascll码值
+                keyup 与 keydown 不识别大小写，keypress 识别大小写
+     -->
+
+    <!-- BOM -->
+    <!-- 
+        定义：BOM是浏览器对象模型，核心对象是window，兼容性较差
+            window对象是浏览器的顶级对象，既是JS访问浏览器窗口的一个接口，又是一个全局对象
+
+        window对象常见事件：
+            1.window.onload     窗口加载事件，文档内容完全加载完成会触发该事件，只能写一次
+                load事件是等页面内容全部加载完毕，包括页面dom元素、图片、flash、css等
+                DOMContentLoaded事件是DOM加载完毕就执行，不包括图片、flash等，加载速度比load快
+            
+            2.window.onresize   调整窗口大小事件，窗口大小发生像素变化就会触发
+                window.innerWidth表示当前屏幕宽度
+
+        定时器：
+            1.setTimeout(函数，毫秒数)  延迟后调用函数，毫秒不写视为0，回调函数
+                清除定时器：clearTimeout(定时器名)  停止定时器
+
+            2.setInterval(函数，毫秒数) 按时间间隔不断调用函数
+                清除定时器：clearInterval(定时器名)
+            
+            3.JS执行队列：
+                定义：js属于单线程，为了解决js运行过慢问题，根据多核cpu的计算能力，H5允许js创建多个线程，出现了同步和异步
+                同步任务：同步任务都在主线程执行，形成一个执行线
+                异步任务：一般而言异步任务分为以下三种
+                    1.普通事件：如click、resize等
+                    2.资源加载：如load、error等
+                    3.定时器：包括setTimeout、setInterval
+                过程：
+                    1.首先会把所有任务放到主线程执行栈中，依次执行
+                    2.遇到同步任务执行，遇到异步任务转到异步进程处理
+                    3.如果异步任务被调用，则转到任务队列中
+                    4.主线程执行完后会看任务队列是否有任务，然后按顺序执行
+
+        location对象：
+            window对象提供的一个用于获取或者设置窗体url的属性，并且可以解析url，这个属性返回的是一个对象
+            url：统一资源定位符，是互联网上标准资源的地址
+                语法：protocol://hose[:port]/path/[?query]#fragment
+                    通信协议://主机(域名)[:端口号]/路径/[?参数]#片段
+            属性：
+                1.location.href     获取或者设置整个URL
+                2.location.host     返回主机（域名）
+                3.location.port     返回端口号，未写返回空字符串
+                4.location.pathname 返回路径
+                5.location.search   返回参数
+                6.location.hash     返回片段
+            
+            方法：
+                1.location.assign()     跟href一样，可以跳转页面
+                2.location.replace()    替换当前页面，不记录历史，所以不能后退页
+                3.location.reload()     重新加载页面，参数为true表示强制刷新
+            
+        navigator对象：
+            定义：包含有关浏览器的对象
+            常用属性：
+                navigator.userAgent：返回浏览器和计算机信息，通常用于判断设备类型
+
+        history对象：
+            定义：对浏览器的历史记录进行交互
+            方法：
+                1.history.forward()         前进
+                2.history.back()            后退
+                3.history.go(参数)          正数前进，负数后退
+     -->
+
+    <!-- pc网页特效 -->
+    <!-- 
+        元素偏移量offset系列
+            定义：offset系列相关属性可以动态的得到该元素的位置，大小等
+            属性：
+                1.element.offsetParent      返回该元素带有定位的父级元素，没有则返回body
+                2.element.offsetTop         返回元素相对于带有定位父元素上方距离
+                3.element.offsetLeft        返回元素相对于带有定位父元素左边框距离
+                4.element.offsetWidth       返回自身包括padding、边框、内容区的宽度，不带单位
+                5.element.offsetHeight      返回自身包括padding、边框、内容区的高度，不带单位
+            offset与style区别:
+                1.offset可以得到任何样式表中的样式值     style只能等到行内样式表中的样式值
+                2.offset获取到的数值没有单位            style.width获取到的值有单位
+                3.offsetWidth包含内边距、边框、宽度     style.width只包括宽度
+                4.offset系列属性只读不能赋值            style获取到的属性可以赋值
+                总结：offset系列适合获取元素大小、位置   style系列适合改变元素值
+                
+        元素可视区client系列
+            定义：client系列相关属性可以动态的获取元素边框大小，元素大小等
+            属性：
+                1.element.clientTop     返回元素上边框大小
+                2.element.clientLeft    返回元素左边框大小
+                3.element.clientWidth   返回元素padding、内容区宽度大小，没有单位
+                4.element.clientHeight  返回元素padding、内容区高度大小，没有单位
+
+        元素滚动scroll系列
+            定义：scroll系列相关属性可以获取元素大小、滚动距离
+            属性：
+                1.element.scrollTop     返回元素被卷去的上侧距离，没有单位
+                2.element.scrollLeft    返回元素被卷去的左侧距离，没有单位
+                3.element.scrollWidth   返回自身实际宽度，不含边框，没有单位
+                4.element.ScrollHeight  返回自身实际高度，不含边框，没有单位
+                5.window.pageYOffset    返回页面被卷去上侧距离，没有单位
+                6.window.pageXOffset    返回页面被卷去左侧距离，没有单位
+            事件：scroll    滚动触发
+
+        区别：
+            offset包括边框  常用于获取元素位置
+            client不包括边框    常用于获取元素大小
+            scroll不包括边框，得到元素实际大小  常用于获取滚动距离
+
+        动画原理：
+            function 动画名(obj,target){
+                clearInterval(obj.自定义属性)
+                obj.自定义属性 = setInterval(function(){
+                    if(属性判断条件){
+                        clearInterval(obj.自定义属性)
+                    }
+                    obj.style.属性 += 属性变化 
+                },毫秒数)
+            }
+            调用函数
+            匀速动画：盒当前位置 + 固定值
+            缓速动画：盒子当前位置 + (目标值 - 现在位置)/10，禁止小数，根据正负值用ceil或者floor取整
+            通常毫秒数设置为15
+    -->
+
+    <!-- 扩展 -->
+    <!-- 
+        立即执行函数：
+            定义：不需要调用，直接运行
+            写法：(function(a,b){})(a,b)    或者    (function(a,b){}(a,b))
+            优点：独立创建一个作用域，里面所有变量都是局部变量，与外面不冲突
+     -->
+
+    <!-- 移动端网页特效 -->
+    <!-- 
+        移动端touch触屏事件
+            1.touchstart        手指触摸到一个DOM元素时触发
+            2.touchmove         手指在一个DOM元素上滑动时触发
+            3.touchend          手指从一个DOM元素上移开时触发
+
+        移动端触摸事件对象
+            1.e.touches         得到正在触摸屏幕的所有手指的一个列表
+            2.e.targetTouches   得到触摸当前DOM元素上手指的一个列表
+            3.e.changedTouches  得到手指状态发生改变的列表，从有到无，从无到有
+            扩展：e.preventDefault()  阻止屏幕滚动
+
+        classList类名操作
+            定义：H5新增属性，返回类名集合数组
+            用法：
+                1.element.classList.add('类名')     添加一个类名
+                2.element.classList.remove('类名')  删除一个类名
+                3.element.classList.toggle('类名')  切换类名，有变无，无变有
+        
+        click事件300ms延迟时间解决方案
+            解释：移动端有一个双击事件，第一次点击后会有300ms延迟判断是否有第二次点击
+            方法：移动端视口标签添加 user-scalable=no 字段，意为禁止缩放
+     -->
+
+    <!-- 移动端插件与框架的使用 -->
+    <!-- 
+        swiper插件
+            地址：https://www.swiper.com.cn/
+            使用方法：
+                1.下载swiper
+                2.引入文件中的swiper-bundle.min.js与swiper-bundle.min.css
+                3.复制模板的html、css、js代码到页面中
+                4.根据官方文档API修改需要的参数
+
+        supersilde插件
+            地址：http://www.superslide2.com/TouchSlide/
+            使用方法：与上一致
+
+        bootstarp框架使用：
+            1.下载bootstarp文件
+            2.引用相关js、css文件，注意js文件放在jquery文件后
+            3.复制html代码到页面中
+            4.根据API修改css样式，或者添加js实现功能
+
+     -->
+
+    <!-- 本地存储 -->
+    <!-- 
+        特性:
+            1.数据存储在用户浏览器中
+            2.设置读取方便,刷新页面不丢失数据
+            3.容量较大，sessionStorage可以放5M，localStorage可以放20M
+            4.只能存储字符串，可以将对象JSON.stringify()编码后存储
+
+        window.sessionStorage
+            特性：
+                1.生命周期为关闭页面
+                2.在同一个页面下数据可以共享
+                3.以键值对的形式存储使用
+            用法：
+                1.sessionStorage.setItem(key,value)     存储数据
+                2.sessionStorage.getItem(key)           获取数据
+                3.sessionStorage.removeItem(key)        删除数据
+                4.sessionStorage.clear()                删除所有数据
+
+        window.localStorage
+            特性：
+                1.生命周期永久生效，除非手动删除，否则关闭页面也会存在
+                2.可以多窗口共享
+                3.以键值对的形式储存使用
+            用法：
+                1.localStorage.setItem(key,value)       存储数据
+                2.localStorage.getItem(key)             获取数据
+                3.localStorage.removeItem(key)          删除数据
+                4.localStorage.clear()                  删除全部数据
+             
+        JSON:
+            JavaScript Object Notation JS对象表示法
+            JS中的对象只有JS自己认识，其他语言都不认识
+            JSON是一个特殊格式的字符串，可以被任意语言识别，也可以转换成任意语言中的对象，用于数据交互
+            JSON与JS对象的格式一样，只不过JSON中的字符串属性名必须加双引号
+            JSON分为JSON对象与JSON数组
+            JSON中允许的属性值：字符型，数值，布尔型，null，普通对象，数组
+            JSON对象 转换成 JS对象：JSON.parse(JSON对象)    ie8+
+            JSON对象 转换成 JS对象：eval("(" + JSON对象 + ")")    ie7-
+            JS对象 转换成 JSON对象：JSON.stringify(JS对象)
+
+
+
+
+
+
+
+
+     -->
+
+</body>
+</html>

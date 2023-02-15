@@ -1,0 +1,220 @@
+body{
+    line-height: 1.5;
+} 
+input,
+textarea,
+button,
+select{
+    border: none;
+}
+input:focus,
+textarea:focus,
+button:focus,
+select:focus{
+    outline: none;
+    outline-offset: 0;
+}
+input[type="text"],input[type="password"]{
+    border: 1px solid #dcdfe6;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 40px;
+    padding: 0 20px;
+    font-size: 14px;
+    color: #606266;
+}
+input[type="text"]:hover,input[type="password"]:hover{
+    border-color: #c0c4cc;
+}
+input[type="text"]::placeholder,input[type="password"]::placeholder{
+    color: #ccc;
+}
+input[type="text"]:focus,input[type="password"]:focus{
+    border-color: #00a1d6;
+}
+
+.theme{
+    width: 980px;
+    margin: 1em auto;
+    margin-bottom: 30px;
+}
+.theme h2{
+    text-align: center;
+    font-size: 38px;
+    border-bottom: 1px solid #ddd;
+    height: 30px;
+}
+.theme h2 span{
+    padding: 0px 10px;
+    background-color: #fff;
+}
+
+.form-area{
+    width: 423px;
+    margin: 0 auto;
+    
+}
+.form-area>form>div{
+    position: relative;
+}
+.form-area a{
+    color: #00a1d6;
+}
+.form-area .form-item{
+    margin: 50px 0;
+}
+.form-area .select::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.form-area .select>div{
+    float: left;
+    height: 40px;
+}
+.form-area .select .region{
+    width: 140px;
+    position: relative;
+}
+.form-area .select .phone{
+    width: 283px;
+}
+.form-area .select .region div{
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px;
+    color: #909399;
+    border: 1px solid #dcdfe6;
+    box-sizing: border-box;
+    border-radius: 4px 0px 0px 4px;
+    border-right: none;
+}
+.form-area .select .region ul{
+    display: none;
+    max-height: 256px;
+    background-color: #fff;
+    color: #606266;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 50px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    padding: 10px 0;
+    font-size: 14px;
+    overflow-y: auto;
+}
+.form-area .select .region ul li{
+    height: 34px;
+    line-height: 34px;
+    padding: 0 20px;
+    cursor: pointer;
+}
+.form-area .select .region ul .li-active{
+    color: #00a1d6;
+    font-weight: bold;
+}
+.form-area .select .region ul li:hover{
+    background-color: #f5f7fa;
+}
+.form-area .select .phone input{
+    border-radius: 0px 4px 4px 0px;
+}
+.form-area button{
+    height: 40px;
+    background-color: #00a1d6;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+}
+.form-area .sncode{
+    position: relative;
+}
+.form-area .btn-sncode{
+    width: 130px;
+    height: 38px;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+}
+.form-area button:hover{
+    background-color: #33b4de;
+}
+.form-area .statement{
+    margin: -40px 0;
+    font-size: 12px;
+}
+.form-area .statement .checkbox{
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border:1px solid #dcdfe6;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.form-area .statement input{
+    display: none;
+}
+.form-area .statement input:checked+.checkbox{
+    border-color: #00a1d6;
+}
+.form-area .statement input:checked+.checkbox::after{
+    content: "";
+    display: block;
+    width: 7px;
+    height: 7px;
+    background-color: #00a1d6;
+    border-radius: 2px;
+    margin-left: 2.5px;
+    margin-top: 2.5px;
+}
+.form-area .register button{
+    width: 100%;
+    box-sizing: border-box;
+}
+.form-area .right {
+    margin-top: -40px;
+    float: right;
+}
+.form-area .form-item .error-tips{
+    position: absolute;
+    width: 240px;
+    right: -255px;
+    top: 10px;
+    color: #f45d90;
+    font-size: 12px;
+    display: none;
+}
+.form-area .form-item.error .error-tips{
+    display: block;
+}
+.form-area .form-item.error input{
+    border-color: #f45d90;
+}
+.form-area button:disabled{
+    background: #f5f5f5;
+    color: rgba(0, 0, 0, 0.25);
+    border: 1px solid #d9d9d9;
+    box-sizing: border-box;
+    cursor: not-allowed;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

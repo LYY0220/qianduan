@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js基础</title>
+</head>
+<body>
+    <!-- 命令行窗口
+    定义：又叫小黑屏，CMD窗口，终端，shell 
+
+    常用的指令：
+        dir：列出当前目录下所有文件
+        .：当前目录
+        ..：上级目录
+        cd 文件名：进入指定目录
+        md 文件名：当前目录下新建文件夹
+        rd 文件名：删除指定文件
+        文件名：打开当前目录下指定文件
+
+    环境变量：
+        windows系统的变量
+        path中存放多个路径，之间使用分号隔开
+        可以将常用的程序路径放入path中
+        修改path需要重新加载cdm窗口
+        当在cmd窗口中打开一个文件或调用一个程序时，首先会在当前目录下寻找，
+            如果找到直接打开，没找到会去path中寻找，找到打开，没有报错
+        
+    进程与线程：
+        进程：负责为程序的运行提供必备的环境
+        线程是计算机中最小的计算单位，负责执行进程中的程序
+        传统的服务器是多线程的，每进来一个请求就创建一个线程取处理请求
+        Node处理请求是单线程，但是在后台拥有一个I/O线程池
+
+    node.js简介：
+        Node.js是一个能够在服务器端运行js的开放源代码，跨平台js运行环境
+        采用谷歌v8引擎使用事件驱动，非阻塞，异步I/O模型等技术提高性能，优化程序的传输量和规模
+        大部分基本模块都使用js编写
+        
+    node.js用途：
+        web服务API
+        实时多人游戏
+        后端访问服务，例如跨域，服务器端的请求 
+        基于web的应用
+        多客户的通信，如即时通信
+    
+    node执行js文件：
+        cdm窗口：node js文件
+
+    vscode配置node环境：
+        1.下载安装node.js
+        2.cmd输入node -v 与 npm -v，测试是否安装成功
+        3.手动添加用户环境变量
+        4.安装code Runner 与 JavaScript(ES6)code snippents插件
+        5.创建js文件，调试中创建launch.json，修改program属性为 ${file}
+
+    模块化简介(conmmonjs)：
+        ES缺点：没有模块系统，标准库较少，没有标准接口，缺乏管理系统
+        commonjs规范主要是为了弥补当前js的缺陷，希望js能够在任何地方运行
+
+        commonjs对模块定义分为：
+            模块定义：在Node.js中，一个js文件就是一个模块
+            模块引用：
+                在Node.js中，使用require("路径")引入其他模块，相对路径必须使用.或..开头
+                require()返回一个模块对象
+                每个js文件中的代码都独立运行在一个函数中，而不是全局作用域，其他模块无法访问它的变量与函数
+                使用exports.变量/函数名，将变量，函数暴露出去，其他模块可以访问
+            模块标识：
+                核心模块：由node引擎提供，标识为模块的名字
+                文件模块：由用户自己创建的模块，标识为绝对/相对路径
+ 
+        在node中有一个全局对象global，它与window类似，保存node全局创建的变量与属性
+        每个模块代码都是包装在一个函数中执行的，并且函数执行时同时传递进五个实参
+        在node执行模块代码时会在顶部与底部添加代码：
+            function(exports,require,module,__filename,__dirname){
+                模块代码
+            }
+            exports：用来将变量或函数暴露到外部
+            require：用来引入其他模块
+            module：表示当前整个模块
+            __filename：当前模块完整路径
+            __dirname：当前模块所在文件夹的完整路径
+        exports只能通过 . 的方式向外暴露内部变量
+        modul.exports既可以通过 . 的形式，也可以直接赋值成对象
+    
+    包简介(package)
+        commonjs的包规范允许将一组相关的模块组合到一起形成一组完整的工具
+        包实际上就是一个压缩文件，解压后还原成目录，符合规范的目录应该包含包结构中文件
+        commonjs的包规范分为：
+            包结构：用于组织包中的各类文件
+                package.json：包整体描述文件，介绍包名字，作用，作者等信息，必须
+                bin：可执行二进制文件，可以在系统上直接运行
+                lib：js代码，模块可能需要以来其他代码
+                doc：文档，介绍模块具体功能及使用方法
+                test：测试文件
+            包描述文件：描述文件用于表达非代码相关信息，是一个JSON文件-package.json，在文件根目录下
+                package.json中有很多字段，包名，作者信息等
+
+    NPM简介：
+        全称：Node Package Manager node包管理器
+        commonjs包规范是理论，NPM是其中一种实践
+        对于node而言，NPM帮助其完成了第三方模块的发布、安装与依赖
+        借助NPM，node与第三方模块之间形成了一个很好的生态系统
+        NPM不需要单独下载，下载node.js附带
+        NPM常用指令：
+            npm -v：当前npm版本号
+            npm version：全部模块版本号
+            npm search 包名：搜索与包名有关的包
+            npm init：初始化当前目录，会依次弹出文件信息，根据描述信息添加一个package.json文件
+                回车确认添加
+                name：包名，全部小写
+                version：版本号
+                description：包描述
+                entry point：入口文件
+                ....
+                yes确认文件
+            npm init --yes 初始化npm，跳过添加信息
+            npm install / i 包名：在当前目录下安装包，当前根目录需要有package.json文件
+                所有包都在node_modules文件中
+            npm remove / r 包名：删除包
+            npm install / i 包名 --save：安装包并添加到依赖中
+                常用，一般上传服务器时，不会上传node_modules文件
+            npm install / i：下载当前项目所依赖的包
+            npm install / i 包名 -g：全局安装包
+                全局安装包一般是一些工具，运行在系统上，不是项目上
+
+    配置cnpm
+        说明：
+            npm服务器在国外，可能会出现下载慢被屏蔽等问题
+            cnpm是中国npm镜像服务器的指令
+        使用方式：
+            通过文档运行安装指令，安装后可以使用npm访问国外服务器，使用cnpm访问镜像服务器
+            npm与cnpm使用方式一致
+
+    npm搜索包过程：
+        通过npm下载的包都放在node_modules文件夹中
+        通过var 包名 = require("包名")引入即可
+        引入时会在当前目录的node_modules中找
+        没有则会去上一层目录中找
+        找到根目录依然没有则报错
+
+    Buffer缓冲区：
+       定义：
+            Buffer的结构和数组很像，操作方法也与数组类似，用于存放数据请求
+            数组中不能存储二进制文件，Buffer就是专门用来存储二进制数据，但是显示是16进制的
+            存储范围：00000000~11111111，超出舍弃
+            打印输出数字为十进制
+            
+        使用方式：
+            var buf = Buffer.from(str)      将一个字符串保存进buffer中
+            buf.length                      占用内存
+            var buf = Buffer.alloc(10)      创建一个10个字节的buffer，不可更改内存大小，可通过下标修改内容
+            var buf = Buffer.allocUnsafe(10)    创建时不会清除内存，可能会包含数据
+
+    fs文件系统：
+        说明：
+            通过node来操作系统中的文件
+            服务器的本质就是将本地文件发送给远程的客户端
+            Node通过fs模块和文件系统进行交互
+            fs模块提供了一些标准文件API来打开、读取、写入文件
+            fs模块中所有操作结果都有同步、异步两种形式选择
+            同步文件系统会阻塞程序执行，除非操作完毕，否则不会向下执行代码
+            异步文件系统不会阻塞程序的执行，操作完成时通过回调函数返回结果
+            fs是核心模块，直接引入，不用下载
+        同步文件写入：
+            var fs = require("fs")          引入fs模块
+            fs.openSync(path，flags[，mode])  打开文件，该方法会返回一个文件的描述符作为结果
+                path：要打开文件的路径，注意//转义字符
+                flags：对文件的操作类型
+                    r：读取，不存在则出现异常
+                    r+：读写，不存在则出现异常
+                    rs：同步模式下打开文件用于读取
+                    rs+：同步模式下打开文件用于读写
+                    w：写入，不存在则创建，存在则覆盖
+                    w+：读写，不存在则创建，存在则覆盖
+                    wx：写入，存在则打开失败
+                    wx+：读写，存在则打开失败
+                    a：写入，不存在则创建，存在则追加
+                    a+：读写，不存在则创建，存在则追加
+                    ax：追加写入，存在则失败
+                    ax+：追加读写，存在则失败
+                mode：设置文件操作权限，windows一般不传
+            fs.writeSync(fd，string[，position[，encoding]])    向文件写入内容
+                fd：文件描述符
+                string：要写入的内容
+                position：写入位置，数字型
+                encoding：写入编码，默认utf-8
+            fs.closeSync(fd)        保存并关闭文件
+        异步文件写入：
+            var fs = require("fs")      引入fs模块
+            fs.open(path，flags[,mode],callback)       打开文件
+                callback是回调函数，有两个参数
+                    err：错误对象，如果没有错误则为null
+                    fd：文件描述符
+            fs.write(fd，string[，position[，encoding]]，callback)    向文件写入内容
+                callback是回调函数，有一个参数err
+            fs.close(fd,callback)       关闭文件，callback有参数err
+        简单文件写入：
+            var fs = require("fs")      引入fs模块
+            fs.writeFileSync(file,data[,options])            同步文件写入
+            fs.writeFile(file,data[,options],callback)   异步文件写入
+                file：文件路径
+                data：写入内容
+                options：一个对象{encoding:...;mode:...;flag:...}
+                    encoding：编码
+                    mode：权限
+                    flag：文件操作，默认"w"
+                callback：回调函数，参数err
+        流式文件写入：
+            同步、异步、简单文件写入都不适合大文件的写入，性能较差，容易导致内存溢出
+            var fs = require("fs")      引入fs模块
+            var ws = fs.createWriteStream(path[,options])   创建可写流
+            var rs = fs.createReadStrwam(path[,options])    创建可读流
+            ws.write("写入内容")        写入内容，可以使用多次
+            ws.once("open",function(){console.log("可写流打开了")})    可写流监听
+            ws.once("close",function(){console.log("可写流关闭了")})    可写流监听
+            ws.end()                可写流关闭
+        简单文件读取：
+            var fs = require("fs")      引入fs模块
+            fs.readFileSync(path,[,options])        同步简单文件读取
+            fs.readFile(path,[,options],callback)   异步简单文件读取
+                callback：有参数err、data，
+                data：读取到数据会返回一个buffer
+        流式文件读取：
+            var fs = require("fs")      引入fs模块
+            var rs = fs.createReadStrwam(path[,options])    创建可读流
+            var ws = fs.createWriteStream(path[,options])   创建可写流
+            rs.pipe(ws)                 将可读流中内容输出到可写流中
+
+        fs其他方法：
+            fs.existsSync(path)                     验证路径是否存在
+            fs.stat(path,function(err,stat){})      返回对象状态
+            var ss = fs.statSync(path)              返回对象状态    
+            fs.unlink(path，callback)               删除文件
+            fs.UNlinkSync(path)                     删除文件
+            fs.readdir(path[,options],function(err,files){})    读取目录结构
+            var rs = fs.readdirSync(path[,options])             读取目录结构
+            fs.truncate(path,len,callback)          截断文件
+            fs.truncateSync(path,len)               截断文件
+            fs.mkdir(path[,mode],callback)          建立目录
+            fs.mkdirSync(path[,mode])               建立目录
+            fs.rmdir(path,callbacck)                删除目录
+            fs.rmdirSync(path)                      删除目录
+            fs.rename(oldpath,newpath,callback)     重命名
+            fs.renameSync(oldpath,newpath)          重命名
+            fs.watchFile(filename[,options],listener)   监视文件更改写入
+            
+
+
+
+                
+
+
+        
+            
+        
+
+
+
+
+
+
+    -->
+   
+</body>
+</html>

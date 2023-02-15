@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5与CSS3</title>
+    <link rel="stylesheet" href="./index.css">
+    
+</head>
+<body style="margin-bottom: 500px;">
+
+    <!-- HTML5新增语义元素 --> 
+    <div style="display: none;">
+    <!-- 语义化标签 -->
+        <header>用于页头；</header>
+        <nav>用于页面导航栏；</nav>
+        <main>表示文章主体；</main>
+        <article>用于页面章节；</article>
+        <section>用于章节主题；</section>
+        <aside>用于文章侧边栏；</aside>
+        <footer>用于页脚；</footer>
+    <!-- 多媒体标签 -->
+    <!-- js相关属性
+        duration：媒体总时间
+        currenttTime：播放时间
+        muted：是否静音
+        volume：声音0~1
+        paused：是否暂停
+        ended：是否播放完
+        error：媒体错误时返回错误代码
+        cjrrentSrc：返回字符串媒体地址
+        poster：视频预览图片
+        width，height：视频尺寸
+        videoWidth，videoHeight：视频实际尺寸
+        play()：媒体播放
+        pause()：媒体暂停
+        load()：媒体重新加载    
+     -->
+        <video autoplay muted controls loop poster="./../HTML基础/bilibili.jpg">
+            <source src="./../01-HTML基础/video.mp4">
+            <source src="./../01-HTML基础/video.webm">
+            你的浏览器不支持video标签
+        </video><p></p>
+        <audio autoplay muted controls loop preload="auto">
+            <source src="./../01-HTML基础/video.mp4">
+            <source src="./../01-HTML基础/video.webm">
+            你的浏览器不支持audio标签
+        </audio><p></p>
+    <!-- input表单及属性 -->
+        <input type="email" name="" id="" placeholder="邮箱"><p></p>
+        <input type="url" name="" id="" placeholder="url"><p></p>
+        <input type="date" name="" id="" placeholder="日期"><p></p>
+        <input type="time" name="" id="" placeholder="时间"><p></p>
+        <input type="month" name="" id="" placeholder="月份"><p></p>
+        <input type="week" name="" id="" placeholder="周"><p></p>
+        <input type="number" name="" id="" placeholder="数字"><p></p>
+        <input type="tel" name="" id="" placeholder="手机号"><p></p>
+        <input type="search" name="" id="" placeholder="搜索框"><p></p>
+        <input type="color" name="" id="" placeholder="颜色"><p></p>
+        <!-- required属性表示内容不能为空 -->
+        <!-- placeholder属性表示表单提示信息 -->
+        <!-- autofocus属性表示页面加载完成时自动聚焦 -->
+        <!-- autocomplete属性表示字段键入时,提示之前输入过的内容,默认打开on,关闭off -->
+        <!-- multiple属性表示file表单可以多选文件 -->
+    <!-- 其他元素 -->
+        <bdi>隔离元素</bdi><p></p>
+        <details open>
+            <summary>展开折叠标题</summary>
+            <p>展开折叠内容</p>
+        </details><p></p>
+        <dialog>自定义窗口</dialog><p></p>
+        <mark>引用文本中的高亮文本</mark><p></p>
+        <!-- value在0-50,70-100或者50-70两个显示效果 -->
+        标量测量：<meter min="0" low="50" high="70" max="100" value="60"></meter><p></p>
+        进度条：<progress max="100" value="50"></progress><p></p>
+        <ruby>
+            汉 <rp>(</rp><rt>han</rt><rp>)</rp>
+            字 <rp>(</rp><rt>zi</rt><rp>)</rp>
+        </ruby>
+        <!-- 输入框使用list=id引用 -->
+        <datalist id="">
+            <option value=""></option>
+            <option value=""></option>
+        </datalist>
+    </div>
+
+    <!-- CSS3新增属性 -->
+    <div>
+    <!-- css选择器 -->
+        <div>
+        <!-- 属性选择器 -->
+            <!-- div[class]表示选中所有有class属性的div元素 -->
+            <!-- div[class=test1]表示选中所有class属性为test1的div元素 -->
+            <!-- div[class^=test]表示选中所有class属性以test开头的div元素 -->
+            <!-- div[class$=1]表示选中所有class属性以1结尾的div元素 -->
+            <!-- div[class*=s]表示选中所有class属性中带s的div元素 -->
+            <div class="test1"></div>
+        <!-- 结构伪类选择器 -->
+            <!-- li：first-child表示第一个li元素 -->
+            <!-- li：last-child表示最后一个li元素 -->
+            <!-- li：nth-child(n)表示第n个li元素，n可以是even、odd也可以是2n、2n+1、n+5或者-n+5 -->
+            <!-- li：nth-of-type与li：nth-child用法相同，
+                li：nth-child先把所有元素排列先取序号后确认是不是li元素
+                li：nth-of-type先把所有li元素排列，再取序号 -->
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        <!-- 伪元素选择器 -->
+            <!-- ::before,在元素内容之前创建一个行内元素 -->
+            <!-- ::after,在元素内容之后创建一个行内元素 -->
+            <!-- 伪元素选择器中必须有content属性 -->
+            <!-- 常用场景:字体图标,遮盖层,清除浮动 -->
+        </div>
+    <!-- css属性 -->
+        <div>
+            <!-- 尺寸计算 width:calc(100% - 30px),永远比父元素小30px,还可以使用+-*/计算 -->
+            
+            <!-- 背景图引用 background-image：url(地址)；多个背景图用,链接 -->
+            <!-- 背景图尺寸 background-size：宽 高；可以设置像素或百分比，百分比相对于父元素 -->
+            <!-- 背景图定位 background-origin：区域；可选content-box、padding-box或者border-box -->
+            <!-- 背景图剪裁 background-clip：区域；可选content-box、padding-box或者border-box -->
+            <!-- 图片圆角 border-radius:0px; 可填像素或者百分比 -->
+            <!-- 图片模糊处理 filter:blur(5px),数值越大越模糊 -->
+
+            <!-- 颜色渐变必须加浏览器私有前缀 -->
+            <!-- 线性渐变 background-image：linear-gradient(方向, 颜色, 颜色)；至少两个颜色 -->
+            <!-- 重复线性渐变 background-image：repeating-linear-gradient(方向 颜色 百分比, 颜色 百分比) -->
+            <!-- 径向渐变 background-image：radial-gradient(中心点或者形状，颜色，颜色) -->
+            <!-- 重复径性渐变 background-image：repeating-radial-gradient(中心点或者形状，颜色 百分比，颜色 百分比) -->
+
+            <!-- 文字阴影 text-shadow:水平阴影位置 垂直阴影位置 模糊距离 阴影颜色 -->
+            <!-- 盒子阴影 box-shadow:水平阴影位置 垂直阴影位置 模糊距离 阴影尺寸 阴影颜色 内外阴影(默认outset，可选inset外阴影) -->
+            <!-- 文本溢出 text-overflow：可选clip(剪切)、ellipsis(省略号)、string(给定字符代替) -->
+            <!-- 非中日韩文本换行 word-break：可选break-all(允许单词内换行)、keep-all(只能空格或者连字符处换行) -->
+            <!-- 单词换行 word-wrap：break-word；对长的不可分割的单词进行分割 -->
+            <!-- 自定义字体 引用时使用font-family:自定义字体名引用 -->
+                @font-face{
+                    font-family:自定义字体名；
+                    src:url(字体文件)
+                }
+
+            <!-- 盒子模型 box-sizing默认是content-box,还可以选择border-box实线边框和内边距不影响盒子尺寸 -->
+            <!-- 外形修饰 outline：边框宽度 样式 颜色；outline-offset：距离盒子边框尺寸 -->
+            
+            <!-- 移动端特殊样式 -->
+                文字点击高亮 -webkit-tap-highligt-color:transparent; 用于移动端，背景高亮改为透明
+                ios移动端自定义按钮输入框样式 -webkit-appearance:none;
+                禁止长按弹出菜单 -webkit-touch-callout:none; 常用于图片或者链接
+            
+            <!-- 移动端布局 -->
+                <!-- 流式布局 -->
+                    常用于移动web页面开发
+                    盒子宽度使用百分比
+                    通常会设置min-width和max-width
+
+                <!-- flex弹性布局 -->
+                    通过给父元素添加display:flex属性,控制子元素位置和排列方式
+                    主轴方向 flex-direction row(左到右,默认) row-reverse(右到左) column(上到下) column-reverse(下到上)
+                    主轴排列方式 justify-content flex-start(头到尾,默认) flex-end(尾到头) center(居中) 
+                                space-around(平分剩余空间) space-between(两边贴边，平分剩余空间)
+                    主轴是否换行 flex-wrap nowrap(不换行，默认) wrap(换行)
+                    侧轴排列方式(单行) align-items stretch(拉伸，默认) flex-start(头到尾) flex-end(尾到头) center(居中)
+                    侧轴排列方式(多行) align-content flex-start()(头到尾) flex-end(尾到头) center(居中) 
+                                     space-around(平分剩余空间) space-between(两边贴边，平分剩余空间)
+                    简写 flex-flow:主轴方向 是否换行
+                    子项flex使用 子项尺寸为0,设置flex份数,子项按份数比例分配父类空间
+                    子项在侧轴排列方式 align-self 覆盖侧轴排列(单行)
+                    子项前后位置 order:数字 值越小越靠前
+
+                <!-- rem + 媒体查询 + less 布局 -->
+                    流程：
+                        1.选一套标准尺寸,一般宽度为750px
+                        2.屏幕宽度 除以 划分份数 得到 html文字大小
+                        3.页面元素在750px像素下的尺寸 除以 html文字大小 得到 页面元素的rem值(可以在less文件中运算)
+                        4.在公共样式中,根据媒体查询,在不同尺寸中设置不同的html文字大小
+                    rem 相对于html元素文字大小的单位
+                    媒体查询语法 @media 媒体类型 关键字 (媒体特性){css}
+                        媒体类别 all(所有设备) print(打印机和打印预览) scree(电脑屏幕、平板电脑、智能手机等)
+                        关键字 and(且,多个媒体特性连接到一起,常用) not(非,排除某个媒体类别) only(指定某个媒体类别)
+                        媒体特性 width min-width max-width 页面可见(最大、最小)宽度
+                        媒体查询引入资源 放在link中media="媒体类型 关键字 (媒体特性)" 媒体特性从小到大写
+                    Less 一门css扩展语言、css预处理器 在css语法中引入变量、运算、函数等功能
+                        less文件 新建后缀名为less的less文件,在less文件中编写less语句
+                        less变量 
+                            创建变量 @变量名:值; 变量名必须以@为前缀，不能包含特殊字符，不能数字开头，区分大小写
+                            使用变量 css属性:@变量名
+                        less编译 下载easy less插件,保存less文件会自动出现一个css文件,引用这个css文件即可
+                        less嵌套 less文件中子元素及其css属性可以直接写入父元素css中,伪元素和伪类选择器前面需要加&
+                        less运算 less中的数字属性可以使用+-*/进行运算,符号前后有空格,单位取第一个值的单位
+                        less生成css路径 在插件扩展less.compile中添加“out”:"css文件夹路径"
+                   
+                <!-- rem + flexible.js -->
+                    flexible.js 手机淘宝团队做出的简洁高效移动端适配库 地址:https://github.com/amfe/lib-flexible
+                    流程：
+                        1.引用flexible.js文件
+                        2.选一套标准尺寸,一般宽度为750px
+                        3.屏幕宽度 除以 10 得到 html文字大小
+                        4.页面元素在750px像素下的尺寸 除以 html文字大小 得到 页面元素的rem值(可以在less文件中运算)
+
+                <!-- 响应式布局 -->
+                    原理：利用媒体查询，针对不同宽度设备进行布局和设置样式
+                        手机:小于768px设置100% 平板:768px-992px设置750px
+                        桌面显示器:992px-1200px设置970px 大桌面显示器:大于1200px设置1170px
+                    流程:可以自己用媒体查询定义,也可以使用bootstarp框架的container类
+                <!-- bootstarp前端开发框架 -->
+                    使用方式:
+                        1.在项目根目录下创建bootstarp文件夹
+                        2.下载bootstarp并解压,复制里面的文件粘贴到bootstarp文件夹中
+                        3.引用bootstarp文件夹中的相关文件
+                        4.使用预制好的css名
+                    布局容器:container类,响应式布局,固定宽度
+                    栅格系统:
+                        将页面分成若干等宽的列,随着屏幕尺寸变化,列宽也会变化，从而实现等比例缩放
+                        bootstrap提供一套响应式的流式栅格系统,会自动将container分成12列
+                    栅格系统的使用
+                        行(父元素)必须放在container布局容器中
+                        列(子元素)划分需要使用类前缀+数字,手机.col-xs- 平板.col-sm- 桌面显示器.col-md- 大屏.col-lg- 
+                        每一行数字和小于12会有空白,大于12会换行
+                        每一列默认有15px的padding
+                    栅格系统列嵌套:最好在嵌套时添加一个row类的容器,去除父类的padding
+                    栅格系统列偏移:在偏移的列添加 类前缀 + offset- + 偏移量(几格)
+                    栅格系统列排序:类前缀 + push(向右)-或者pull(向左)- + 移动量(几格)
+                    栅格系统响应式工具,visible是显示:
+                        .hidden-xs 手机隐藏         .hidden-sm 平板隐藏
+                        .hidden-md 桌面显示器隐藏    .hidden-lg 大屏隐藏
+                    修改container类的宽度:通过媒体查询定义
+
+                <!-- vw 与 vh -->
+                    定义:vw与vh是相对于视口尺寸的单位,相当于视口尺寸的百分之一
+                    px转换vw插件 px2vw 在插件扩展设置修改视口宽度 
+
+
+            <!-- 过度:transition:需要过度的属性 花费时间 运动曲线 开始时间;一般与:hover联用 -->
+                <!-- 需要过度的属性,指css属性,全部都选可以写all -->
+                <!-- 花费时间,指属性变化的时间,单位s必须写 -->
+                <!-- 运动曲线,指属性值变化速度，默认ease，可以省略 -->
+                <!-- 开始时间,值设置触发延迟时间，默认是0s，可以省略 -->
+
+            <!-- 动画 -->
+                <!-- 定义动画,可以分成多个区间，也可以使用form和to分成两部分 -->
+                    @keyframes 动画名称{
+                        0%{}
+                        100%{}
+                    }
+                <!-- 动画常见属性 -->
+                    <!-- animation-name:动画名; 引用动画的名称，引用必写 -->
+                    <!-- animation-duration:时间; 动画总时长，引用必写 -->
+                    <!-- animation-timing-function:ease; 运动曲线，默认ease -->
+                        <!-- linear：匀速； ease：慢-快-慢；-->
+                        <!-- ease-in：低速开始； ease-out：低速结束 -->
+                        <!-- ease-in-out：低速开始和结束 -->
+                        <!-- steps(步长)：动画几步完成 -->
+                    <!-- animation-delay:1s; 开始延迟时间 -->
+                    <!-- animation-iteration-count:infinite; 重复次数，默认是1，infinite无限重复 -->
+                    <!-- animation-direction:alternate; 是否逆向，默认normal否，alternate是 -->
+                    <!-- animation-fill-mode:forwads; 动画结束后状态，默认backwards回到起始点，forwards结束点不动 -->
+                    <!-- animation-play-state:pause; 动画是否停止，默认running不停止，pause停止，通常和:hover联用 -->
+                    <!-- animation：动画名称 持续时间 运动曲线 开始时间 循环次数 是否反方向 结束状态；动画属性简写 -->
+
+            <!-- 2D转换：transform -->
+                <!-- transform：translate(x,y),位置移动，不会影响其他元素，对行内元素无效，可以设为百分比相对于自身 -->
+                <!-- transform：rotate(度数deg)，旋转，单位是deg，正数为顺时针，负数为逆时针，旋转中心点是元素中心点 -->
+                <!-- transform-origin：x y；设置旋转中心点，可以是数值，也可是是百分比或者方位名词top等 -->
+                <!-- transform：scale(x,y);元素缩放，可以写数值或者百分比，不影响其他元素，可以设置中心点 -->
+
+            <!-- 3D转换：transform -->
+                <!-- transform：translate3d(x,y,z)；3D移动，单位px，z轴移动通常与透视联用 -->
+                <!-- perspective：0px；透视，相当于眼睛到屏幕距离，数值越大，物体越小，需要加在z轴移动的父元素上 -->
+                <!-- transform：roteX(45deg)；3D旋转，rotate3d(x,y,z,deg),自定义角度旋转，可以配合透视产生3d效果 -->
+                <!-- transform-style：preserve-3d；子元素开启立体空间，默认flat不开启，需要写在父元素上 -->
+
+            <!-- 私有前缀 -->
+                <!-- -moz-：firefox(火狐)浏览器私有前缀 -->
+                <!-- -ms-：ie浏览器私有前缀 -->
+                <!-- -webkit-：safari(苹果)、chrome(谷歌)浏览器私有前缀 -->
+                <!-- -o-：opera(欧朋)浏览器私有前缀 -->
+            
+        </div>
+    </div>
+
+</body>
+</html>

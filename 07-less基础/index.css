@@ -1,0 +1,177 @@
+/*  less定义 */
+/*
+    less是一种动态样式语言，属于css预处理器的范畴，扩展了css语言
+    增加了变量，Minxin(混合参数)，函数等特性，使css更容易维护和扩展
+    LESS既可以在客户端上运行，也可以借助Node.js在服务器端运行
+    vsdode中可以使用easy less插件编译less
+    // 注释的内容不会被编译到css文件中
+    注释的内容会被编译到css文件中 
+    */
+/* less变量 */
+/*
+    使用@声明一个变量
+    作为属性值时，使用方式为：@变量名
+    作为属性名时，使用方式为：@{变量名}
+    作为url时，使用方式为：@{url}
+    变量作用域：变量会延迟加载，谁近用谁
+    变量可以使用 + - * / 运算，运算符前后空格，单位要统一
+    calc避免编译：~"calc(....)"
+    */
+.test3 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  margin-bottom: 10px;
+}
+/* less嵌套 */
+/*
+    按照DOM层级一层一层嵌套
+    伪类选择器与伪元素选择器前面使用&
+    媒体查询使用方法
+    */
+.test4 {
+  width: 100px;
+  height: 100px;
+  border: 1px solid red;
+  margin-bottom: 10px;
+}
+.test4:hover {
+  background-color: red;
+}
+@media screen and (min-width: 1000px) {
+  .test4 {
+    color: green;
+  }
+}
+/* less混合 */
+/* 普通混合：混合就是将一系列属性从一个规范集引入到另一个规范集的方式 */
+/* !important表示最重要 */
+.box5 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  margin-bottom: 10px;
+}
+.test5 {
+  width: 100px !important;
+  height: 100px !important;
+  background-color: red !important;
+  margin-bottom: 10px !important;
+}
+/* 不带输入混合：混合部分不会被编译 */
+.test6 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  margin-bottom: 10px;
+}
+/* 带多个参数的混合：混合部分可以带参数 */
+.test7 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  margin-bottom: 10px;
+}
+/* 带多个参数并且有默认值的混合：混合部分可以带参数并且有默认值 */
+.test8 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  margin-bottom: 10px;
+}
+/* 带命名参数的混合：混合部分可以通过命名参数修改混合参数默认值 */
+.test9 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  margin-bottom: 10px;
+}
+/* 匹配模式：@_表示同类引用 */
+.test10 {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+  border: 1px solid red;
+}
+/* less方法 */
+/* arguments变量，参数位置也可以使用...,然后直接使用 arguments 不加 @ */
+.test11 {
+  border: 1px solid red;
+  margin-bottom: 10px;
+  width: 100px;
+  height: 100px;
+}
+/* 条件判断：when and(&&) */
+.test12 {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+  border: 1px solid red;
+}
+/* 条件判断：when not(!) */
+.test13 {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+  border: 1px solid red;
+}
+/* 条件判断：when ，(||) */
+.test14 {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+  border: 1px solid red;
+}
+/* 递归循环方法 */
+.test15 {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+  background-color: #5a5a5a;
+}
+.test16 {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+  background-color: #4f4f4f;
+}
+.test17 {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+  background-color: #444444;
+}
+/* 属性拼接: +表示逗号，+_表示空格 */
+.test18 {
+  height: 100px;
+  width: 100px;
+  margin-bottom: 10px;
+  color: #fff;
+  background-image: url(../HTML基础/bilibili.jpg), url(../HTML基础/bilibili.jpg);
+}
+/* less继承 */
+/* 将多个重复样式提取出来，减少css代码,不能有参数，all表示匹配所有有关样式 */
+.box19,
+.test19,
+.test20 {
+  width: 100px;
+  height: 100px;
+  border: 1px solid red;
+  margin-bottom: 10px;
+}
+.box19:hover,
+.test19:hover,
+.test20:hover {
+  background-color: red;
+}
+/* less导入 */
+/* 导入文件: 可以放到任何位置 */
+/* 导入文件但是不会编译 */
+/* 相同文件只能导入一次 */
+/* 可以导入多次重名文件 */
+/* 函数 */
+/* less中封装了很多函数库，例如颜色定义，颜色操作，颜色混合，字符串处理等 */
+/* 类型检测函数：iscolor,isnumber,isstring,iskeyword,isurl */
+/* 使用方法：.class(@n) when(iscolor(@n)){...} */
+/* 单位检测函数：ispixel,ispercentage,isem,isunit */
+/* 使用方法：.class(@n) when(isem(@n)){...} */

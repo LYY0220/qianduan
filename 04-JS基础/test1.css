@@ -1,0 +1,154 @@
+/* ul{
+    padding: 0;
+    margin: 0;
+    width: 300px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid red;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+ul li{
+    height: 30px;
+    line-height: 30px;
+    flex: 1;
+    border: 1px solid red;
+    box-sizing: border-box;
+}
+.liActive{
+    background-color: red;
+    color: #fff;
+}
+.divs{
+    width: 300px;
+    height: 300px;
+    border: 1px solid red;
+    box-sizing: border-boxs;
+}
+.divs div{
+    display: none;
+} */
+/* .tips{
+    border: 1px solid red;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    margin: auto;
+}
+.eject{
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    z-index: 1;
+}
+.eject div{
+    width: 300px;
+    height: 300px;
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    right: 0;
+    top: 50%;
+    bottom: 0;
+    transform: translate(-50%,-50%);
+}
+.eject div a{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    color: #fff;
+    background: red;
+    font-size: 30px;
+    border-radius: 50%;
+    border: #fff solid 1px;
+    position: absolute;
+    cursor: pointer;
+    right: -15px;
+    top: -15px;
+    
+} */
+.banner{
+    width: 960px;
+    height: 540px;
+    margin:100px auto 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+.banner .img{
+    width: 30000px;
+    height: 540px;
+    position: absolute;
+}
+.banner .img a{
+    float: left;
+}
+.banner .img a img{
+    width: 960px;
+    height: 540px;
+}
+.banner .switch div{
+    display: none;
+    font-size: 60px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    top: 240px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.banner .switch div:hover{
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.banner .switch .left{
+    left: 20px;
+}
+.banner .switch .right{
+    right: 20px;
+}
+.banner .foot{
+    line-height: 60px;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 60px;
+    width: 100%;
+}
+.banner .foot .title{
+    margin-left: 20px;
+    float: left;
+}
+.banner .foot .spot{ 
+    margin-right: 20px;
+    float: right;
+}
+.banner .foot .spot .current{
+    background-color: red;
+}
+.banner .foot .spot a{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+.banner .foot .spot a:hover{
+    background-color: red;
+}

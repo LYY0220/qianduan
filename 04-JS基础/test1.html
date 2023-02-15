@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./test1.css">
+</head>
+<body>
+     
+    <script>
+    // 两个变量互换 
+        /* var a = 1;
+        var b = 2;
+        var c;
+        console.log('a=' + a);
+        console.log('b=' + b);
+        c = a;
+        a = b;
+        b = c;
+        console.log('a=' + a);
+        console.log('b=' + b); */
+
+    // string类型转义符
+        // alert("\\n表示换行,\n\\\表示斜杠\\,\n\\'表示单引号")
+
+    //字符串长度
+        /* var a = prompt('测试字符串长度')
+        alert(a.length) */
+
+    // 字符串拼接
+        /* var age = prompt('输入您的年龄')
+        alert('您今年' + age + '岁！') */
+
+    // 检测数据类型
+        /* var a = 10
+        alert(typeof a) */
+
+    //数据类型转换
+        /* var age = prompt('输入你的年龄')
+        var birthday = 2022 - age
+        alert('您的出生日期是' + birthday + '年')  */
+
+    // if分支语句
+        /* var num = prompt('请输入你的成绩')
+        if(num >= 0 && num < 60){
+            alert('不及格')
+        }else if(num >= 60 && num <+100){
+            alert(及格)
+        }else{
+            num = prompt('请重新输入成绩')
+        }*/
+
+    // 三元表达式
+        /* var num = prompt('输入整数')
+        num < 9 ? alert("0" + num) : alert(num) */
+
+    // switch分支语句
+        /* var fruit = prompt('输入水果') 
+        switch(fruit){
+            case "苹果":
+                alert('1元/斤')
+                break;
+            case "香蕉":
+                alert("2元/斤")
+                break;
+            default:
+                alert("无此水果")
+        } */
+        
+    // for循环
+        /* var num = prompt('请输入人数')
+        var allScore = 0
+        var score = 0
+        for(var i = 1; i<=num; i++){
+            score = prompt('请输入第' + i + '个人的成绩')
+            allScore = allScore + parseInt(score)
+        }
+        alert('总分为' + allScore + '\n平均分为' + allScore/num) */
+    
+    // 多重for循环
+        /* var str = ''
+        for(var i = 1; i <= 9; i++){
+            for(var a = 1; a <= i; a++){
+               str = str + a + "*" + i + "=" + a*i +'\t'
+            }
+            str = str + '\n'
+        }
+        console.log(str) */
+
+    // while循环
+        /* var num = 0
+        var i = 1
+        while(i<=100){
+            num = num + i
+            i++
+        }
+        console.log(num) */
+
+    // do while循环
+        /* var i = 1
+        var num = 0
+        do{
+            num = num + i
+            i++
+        } while(i<=100)
+        console.log(num) */
+
+    // 遍历数组
+        /* var nums = [11,22,33]
+        for(var i = 0; i<nums.length;i++){
+            console.log(nums[i])
+        } */
+
+    // 冒泡排序
+        /* var numArray = [1,2,3,4,5]
+        for(var i = 0;i<numArray.length-1;i++){
+            for(var j = 0; j<numArray.length-1-i;j++){
+                if(numArray[j]<numArray[j+1]){
+                    var num = numArray[j+1]
+                    numArray[j+1] = numArray[j]
+                    numArray[j] = num
+                }
+            }
+        }
+    console.log(numArray) */
+
+    // 函数参数
+        /* function cumulative(num1,num2){
+            var allNum = 0
+            for(var i = num1;i<=num2;i++){
+                allNum = allNum+i
+            }
+            return allNum
+        }
+        console.log(cumulative(1,100))  */
+
+    // arguments
+        /* function numMaxs(){
+            var numMax = arguments[0]
+            for(var i = 1;i<arguments.length;i++){
+                if(numMax < arguments[i]){
+                    numMax = arguments[i]
+                }
+            }
+            return numMax
+        }
+        console.log(numMaxs(1,2,3,4,5,6)) */
+
+    // 创建对象
+        /* function King(name,type,blood,attacks){
+            this.name = name;
+            this.type = type;
+            this.blood = blood;
+            this.attacks = function(){
+                console.log(attacks)
+            }
+        }
+        var lianpo = new King('廉颇','力量型','500血量','近战')
+        var houyi = new King('后羿','射手型','1000血量','远程')
+        console.log(lianpo.name)
+        houyi.attacks() */
+        
+    // 遍历对象
+        /* var obj = {
+            name:"刘",
+            age:10,
+            sex:'男'
+        }
+        for(var k in obj){
+            console.log(k + ":" + obj[k])
+        } */
+
+    // 自定范围随机数
+        /* function numRandom(min,max){
+            return Math.floor(Math.random() * (max - min +1)) + min;
+        }
+        console.log(numRandom(1,55)) */
+    
+    // 日期
+        /* var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth()+ 1;
+        var dates = date.getDate();
+        var day = date.getDay();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        var arr = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+        console.log('北京时间：' + year + "年" + month + "月" + dates + "日" + arr[day] + hours + ":" + minutes + ":" + seconds); */
+
+    // 倒计时
+        /* function getTimes(time){
+            var allTime = +new Date(time)
+            var newTime = +new Date()
+            var times = (allTime - newTime) / 1000
+            var h = parseInt(times / 60 / 60 % 24) 
+            h = h > 9 ? h : '0' + h
+            var m = parseInt(times / 60 % 60)
+            m = m > 9 ? m : '0' + m
+            var s = parseInt(times % 60)
+            s = s > 9 ? s : '0' + s
+            return h + ":" + m + ":" + s
+        }
+        console.log(getTimes('2022-11-19 3:0:0')) */
+
+    // 数组去重
+        /* var arr = [1,1,2,2,3,3]
+        var newArr = new Array()
+        for(var i = 0; i<arr.length;i++){
+            if(newArr.indexOf(arr[i]) == -1){
+                newArr.push(arr[i])
+            }
+        }
+        console.log(newArr) */
+
+    // 字符查找
+        /* var str = '123123123'
+        var index = str.indexOf('2')
+        var num = 0
+        while(index != -1){
+            console.log(index)
+            num++
+            index = str.indexOf('2',index+1)
+        }
+        console.log(num) */
+
+    // 获取字符串中出现最多字符的内容及次数
+
+        /* var str = "12233333"
+        var num = {}
+        for(var i=0;i<str.length;i++){
+            var chars = str.charAt(i)
+            if(num[chars]){
+                num[chars]++
+            }else{
+                num[chars] = 1
+            }
+        }
+        var charMax = ""
+        var charMaxNum = 0
+        for(k in num){
+            if(num[k] > charMaxNum){
+                charMax = k
+                charMaxNum = num[k]
+            }
+        }
+        console.log('出现最多字符为' + charMax + ",次数为" + charMaxNum) */
+    </script>
+
+    <!-- 事件 -->
+        <!-- <button id="bth">点击事件</button>
+        <script>
+            var btn = document.getElementById('bth')
+            btn.onclick = function(){
+                alert('点击事件')
+            }
+        </script> -->
+
+    <!-- 修改元素内容及属性 -->
+        <!-- <button id="test1">test1</button>
+        <button id="test2">test2</button>
+        <button id="test3">test3</button>
+        <div id="test" title="test">test</div>
+        <script>
+            var test = document.getElementById('test')
+            var test1 = document.getElementById('test1')
+            var test2 = document.getElementById('test2')
+            var test3 = document.getElementById('test3')
+            test1.onclick = function(){
+                test.innerHTML = 'test1'
+                test.title = 'test1'
+            }
+            test2.onclick = function(){
+                test.innerHTML = 'test2'
+                test.title = 'test2'
+            }
+            test3.onclick = function(){
+                test.innerHTML = 'test3'
+                test.title = 'test3'
+            }
+        </script> -->
+
+    <!-- 修改表单元素 -->
+        <!-- <input id="pas" type="password">
+        <button id="btn">显示</button>
+        <script>
+            var pas = document.getElementById('pas')
+            var btn = document.getElementById('btn')
+            btn.onclick = function(){
+                if(pas.type == 'password'){
+                    this.innerText = '隐藏'
+                    pas.type = 'text'
+                }else{
+                    this.innerText = '显示'
+                    pas.type = 'password'
+                }
+            }
+        </script> -->
+
+    <!-- 表单验证 -->
+        <!-- <input id="tex" value="" type="text" placeholder="输入两位数">
+        <button id="btn">提交</button>
+        <div id="div"></div>
+        <script>
+            var tex = document.getElementById('tex')
+            var btn = document.getElementById('btn')
+            var div = document.getElementById('div')
+            btn.onclick = function(){
+                if(tex.value.length != 2){
+                    div.innerText = '错误'
+                }else{
+                    div.innerText = '正确'
+                }
+            }
+        </script> -->
+    
+    <!-- 开关灯按钮 -->
+        <!-- <button id="btn">关灯</button>
+        <script>
+            var btn = document.getElementById('btn')
+            var htmlColoe = document.documentElement
+            btn.onclick = function(){
+                if(this.innerText == "开灯"){
+                    btn.innerText = '关灯'
+                    htmlColoe.style.backgroundColor = "#fff"
+                }else{
+                    btn.innerText = "开灯"
+                    htmlColoe.style.backgroundColor = "#000"
+                }
+            }
+        </script> --> 
+
+    <!-- 排他思想 -->
+        <!-- <button>test1</button>  
+        <button>test2</button>
+        <button>test3</button>  
+        <script>
+            var btns = document.getElementsByTagName('button')
+            for(var i = 0;i<btns.length;i++){
+                btns[i].onclick = function(){
+                    for(var j = 0;j<btns.length;j++){
+                    btns[j].style.backgroundColor = "#fff"
+                }
+                this.style.backgroundColor = "red"
+                }
+            }
+        </script> -->
+
+    <!-- 按钮全选与全取消 -->
+        <!-- <input id="test" type="checkbox" name="" id="">是否全选<br>
+        <input type="checkbox" name="" id="">tes1 <br>
+        <input type="checkbox" name="" id="">tes2 <br>
+        <input type="checkbox" name="" id="">test3 <br>
+        <script>
+            var test = document.getElementById('test')
+            var boxs = document.getElementsByTagName("input")
+            for(var i =1;i<boxs.length;i++){
+                test.onclick = function(){
+                    for(var i =1;i<boxs.length;i++){
+                        boxs[i].checked = test.checked
+                    }
+                }
+            } 
+        </script> -->
+
+    <!-- tab栏切换 -->
+    <!-- <ul>
+        <li class="liActive">test1</li>
+        <li>test2</li>
+        <li>test3</li>
+    </ul>
+    <div class="divs">
+        <div class="box" style="display: block;">test1</div>
+        <div class="box">test2</div>
+        <div class="box">test3</div>
+    </div>
+    <script>
+        var lis = document.getElementsByTagName('li')   //获取li集合
+        var divs = document.getElementsByClassName('box')   //获取div集合
+        for(var i = 0;i<lis.length;i++){    //遍历li集合
+            lis[i].setAttribute('index',i)  //自定义li属性
+            lis[i].onclick = function(){    //li循环点击事件
+                for(var i = 0;i<lis.length;i++){    //去除所有li的选中样式
+                    lis[i].className = ""
+                }
+                this.className = "liActive"     //被点击的li添加选中样式
+                for(var i = 0;i<divs.length;i++){    //隐藏所有div
+                    divs[i].style.display = "none"
+                }
+                var index = this.getAttribute('index')  //获取选中li的index属性
+                divs[index].style.display = 'block'     //将对应的div显示出来
+            }   
+        }
+    </script> -->
+
+    <!-- 节点操作，创建元素 -->
+    <!-- <input type="text">
+    <button>发布</button><br>
+    <ul>
+        <li>test</li>
+    </ul>
+    <script>
+        var tex = document.querySelector('input')
+        var btn = document.querySelector('button')
+        var ul = document.querySelector('ul')
+        btn.onclick = function(){
+            var li = document.createElement('li')
+            li.innerText = tex.value
+            ul.appendChild(li)
+        }
+    </script> -->
+
+    <!-- 添加元素方式 -->
+        <!-- <div class="div1"></div>
+        <div class="div2"></div>
+        <script>
+            // 字符串拼接
+            var div1 = document.querySelector('.div1')
+            for(var i = 0;i<=100;i++){
+                div1.innerHTML += '<a href="#">链接</a>'
+            }
+            //数组
+            var arr= []
+            var div2 = document.querySelector('.div2')
+            for(var i = 0;i<=100;i++){
+                arr.push('<a href="#">链接</a>')
+            }
+            div2.innerHTML = arr.join('')
+        </script> -->
+
+    <!-- 事件对象 -->
+    <!-- <button>点击</button>
+    <script>
+        var btn = document.querySelector('button')
+        btn.onclick = function(even){
+            console.log(even)
+        }
+    </script> -->
+
+   <!-- 拖拽模块框 -->
+    <!-- <div class="tips">点击弹出</div>
+    <div class="eject">
+        <div class="test" ><a>×</a></div>
+    </div>
+    <script>
+        // 获取对象
+        var tips = document.querySelector('.tips')
+        var closes = document.querySelector('a')
+        var eject = document.querySelector('.eject')
+        var test = document.querySelector('.test')
+        // 控制显示
+        tips.addEventListener('click',function(){
+            eject.style.display = 'block'
+        })
+        closes.addEventListener('click',function(){ 
+            eject.style.display = 'none'
+        })
+        // 控制移动
+        test.addEventListener('mousedown',function(e){
+            var x = e.pageX - test.offsetLeft
+            var y = e.pageY - test.offsetTop
+            document.addEventListener('mousemove',move) 
+            function move(e){
+                test.style.left = e.pageX - x + 'px'
+                test.style.top = e.pageY - y + 'px'
+            }
+            document.addEventListener('mouseup',function(){
+                document.removeEventListener('mousemove',move)
+            })
+        })
+    </script> -->
+
+    <!-- 轮播图 -->
+    <div class="banner">
+        <div class="img">
+            <a href=""><img src="../CSS基础/习题/定位练习/test.webp"></a>
+            <a href=""><img src="../CSS基础/习题/定位练习/test.webp"></a>
+            <a href=""><img src="../CSS基础/习题/定位练习/test.webp"></a>
+        </div>
+        <div class="switch">
+            <div class="left">&lt;</div>
+            <div class="right">&gt;</div>
+        </div>
+        <div class="foot">
+            <div class="title">BILIBILI</div>
+            <div class="spot"></div>
+        </div>
+    </div>
+    <script src="./animate.js"></script>
+    <script>
+        var banner = document.querySelector('.banner')
+        var leftBtn = document.querySelector('.left')
+        var rightBtn = document.querySelector('.right')
+        // 鼠标经过显示左右按钮
+        banner.addEventListener('mouseenter',function(){
+            leftBtn.style.display = "block"
+            rightBtn.style.display = 'block'
+            // 停止自动播放
+            clearInterval(timer)
+            // timer = null
+        })
+        // 鼠标离开隐藏左右按钮
+        banner.addEventListener('mouseleave',function(){
+            leftBtn.style.display = "none"
+            rightBtn.style.display = 'none'
+            //开始自动播放
+            timer = setInterval(function(){
+                rightBtn.click()
+            },2000)
+        })
+        // 获取单个图片宽度
+        var imgWidth = banner.offsetWidth 
+        // 动态获取圆圈数量，与图片数量一致
+        var imgs = document.querySelector('.img')
+        var spots = document.querySelector('.spot')
+        for(var i = 0;i < imgs.children.length;i++){
+            // 创建一个圆圈（a元素）
+            var a = document.createElement('a')
+            // 给每个圆圈添加索引属性，用于圆圈滚动图片
+            a.setAttribute('index',i)
+            // 把圆圈放入sports中
+            spots.appendChild(a)
+            // 小圆圈排它思想
+            a.addEventListener('click',function(){
+                //去除所有圆圈current样式
+                for(var i = 0;i<spots.children.length;i++){
+                    spots.children[i].className = ''
+                }
+                // 当前圆圈添加current样式
+                this.className = 'current'
+                // 获取当前圆圈索引
+                var index = this.getAttribute('index')
+                num = index
+                circle = index
+                //点击当前圆圈滚动图片
+                animate(imgs,-index * imgWidth)
+            })   
+        }
+        //第一个圆圈设置选中样式
+        spots.children[0].className = 'current'
+        //复制第一张图片到最后面
+        var firstImg = imgs.children[0].cloneNode(true)
+        imgs.appendChild(firstImg)
+        
+        var num = 0
+        var circle = 0
+        // 节流阀
+        var flag = true
+        //右侧按钮点击事件
+        rightBtn.addEventListener('click',function(){
+            if(flag){
+                flag = false
+                // 如果走道最后一张复制的图片，imgs的left改为0，num变为0
+                if(num == imgs.children.length-1){
+                    imgs.style.left = 0
+                    num = 0
+                }
+                // 点击按钮滚动图片
+                num++
+                animate(imgs,-num * imgWidth,function(){
+                    flag = true
+                })
+                // 点击按钮改变圆圈样式
+                circle++
+                if(circle == spots.children.length){
+                    circle =0
+                }
+                for(var i = 0;i<spots.children.length;i++){
+                    spots.children[i].className = ""
+                }
+                spots.children[circle].className = 'current'
+            }
+            
+        })
+        //左侧按钮点击事件
+        leftBtn.addEventListener('click',function(){
+            if(flag){
+                flag = false
+                // 如果走到第一张图片
+                if(num == 0){
+                    num = imgs.children.length - 1
+                    imgs.style.left = -num * imgWidth + 'px' 
+                }
+                // 点击按钮滚动图片
+                num--
+                animate(imgs,-num * imgWidth,function(){
+                    flag = true
+                })
+                // 点击按钮改变圆圈样式
+                circle--
+                if(circle < 0){
+                    circle = spots.children.length - 1
+                }
+                for(var i = 0;i<spots.children.length;i++){
+                    spots.children[i].className = ""
+                }
+                spots.children[circle].className = 'current'
+            }
+        })
+        // 轮播图自动播放
+        var timer = setInterval(function(){
+            rightBtn.click()
+        },2000)
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

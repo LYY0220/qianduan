@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 500px;
+            height: 500px;
+            border: 1px solid red;
+        }
+    </style>
+    <script src="./../../jQuery基础/jquery.mini.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.js"></script> 
+</head>
+<body>
+    <!-- 点击按钮向服务器发送请求，处理服务器返回结果 -->
+    <!-- <button>发送请求</button>
+    <div></div>
+    <script>
+        // 获取按钮 
+        const btn = document.querySelector('button')
+        const div = document.querySelector('div')
+
+        // 绑定事件
+        btn.addEventListener('click',function(){
+            // 1.创建http请求对象
+            const xhr = new XMLHttpRequest()
+
+            //请求行
+            // 2.初始化、设置请求类型和服务器url、设置请求参数 
+            xhr.open('GET','http://127.0.0.1:8000/server?/a=10&b=20&c=30')
+
+            //请求体
+            // 3.向服务器发送请求及参数
+            xhr.send()
+
+
+            // 4.事件绑定，处理服务器端返回的结果
+            //  on表示当...时候
+            //  readystate表示对象状态，0:对象未初始化；1:对象执行完open()；
+            //      2:对象执行完send()；3:表示服务器返回部分结果；4:服务器返回所有结果
+            // change表示改变，根据状态会执行四次
+            xhr.onreadystatechange = function(){
+                // 判断，当服务器返回所有结果时运行
+                if(xhr.readyState === 4){
+                    // 判断响应状态码，200-299都表示成功
+                    if(xhr.status >= 200 && xhr.status <300){
+                        //响应、处理结果
+                        // console.log(xhr.status)                     //响应行状态码
+                        // console.log(xhr.statusText)                 //响应行状态字符串
+                        // console.log(xhr.getAllResponseHeaders())    //所有响应头
+                        // console.log(xhr.response)                   //响应体
+                        div.innerText = xhr.response
+                    }
+                }
+            }
+
+        })
+    </script> -->
+
+    <!-- 发送post请求，鼠标移入向服务器发送请求并处理结果 -->
+    <!-- <div></div>
+    <script>
+        const div = document.querySelector('div')
+        div.addEventListener('mouseover',function(){
+            const xhr = new XMLHttpRequest()
+            xhr.open('POST','http://127.0.0.1:8000/server')
+
+            // 请求头，用来设置请求体内容类型，和参数查询字符串固定写法
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+            xhr.setRequestHeader('names','namess')
+ 
+            xhr.send()
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){
+                    if(xhr.status >=200 && xhr.status < 300){
+                        div.innerHTML = xhr.response
+                    }
+                }
+            }
+
+        })
+    </script> -->
+
+    <!-- 处理服务器返回的json数据，按下键盘 -->
+    <!-- <div></div>
+    <script>
+        const div = document.querySelector('div')
+        window.onkeydown = function(){
+            console.log(111)
+            const xhr = new XMLHttpRequest()
+            //自动数据转换，设置响应体数据类型
+            xhr.responseType = 'json'
+            xhr.open('GET','http://127.0.0.1:8000/json-server')
+            xhr.send()
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        // 手动数据转换
+                        // let data = JSON.parse(xhr.response)
+                        // div.innerHTML = data.name
+                        div.innerHTML = xhr.response.name
+                    }
+                }
+            }
+        }
+    </script> -->
+
+    <!-- 处理ie浏览器缓存问题 -->
+    <!-- <div></div>
+    <script>
+        const div = document.querySelector('div')
+        div.addEventListener('click',function(){
+            const xhr = new XMLHttpRequest()
+            // 添加一个时间戳，使每次请求地址参数不同
+            xhr.open('GET','http://127.0.0.1:8000/ie?t="+Date.now()"')
+            xhr.send()
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        div.innerHTML = xhr.response
+                    }
+                }
+            }
+        }) 
+    </script> -->
+
+    <!-- 请求超时处理 -->
+    <!-- <div></div>
+    <script>
+        const div = document.querySelector('div')
+        div.addEventListener('click',function(){
+            const xhr = new XMLHttpRequest()
+            // 设定超过时间取消请求
+            xhr.timeout = 2000
+            // 超时回调函数
+            xhr.ontimeout = function(){
+                alert("请求超时，请稍后重试！！！")
+            }
+            //网络异常回调函数
+            xhr.onerror = function(){
+                alert('网络异常，请稍后重试')
+            }
+            xhr.open('GET','http://127.0.0.1:8000/test')
+            xhr.send()
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        div.innerHTML = xhr.response
+                    }
+                }
+            }
+        }) 
+    </script> -->
+
+    <!-- jq发送ajax -->
+    <!-- <div></div>
+    <script>
+        $(function(){
+            const div = $('div').eq(0)
+            div.on('click',function(){
+                $.get('http://127.0.0.1:8000/jquery',{a:10,b:20},function(e){ 
+                    div.html(e.name)
+                },'json')
+            })
+        })
+        
+    </script> -->
+
+    <!-- jq发送ajax通用写法 -->
+    <!-- <div></div>
+    <script>
+        const div = $('div').eq(0)
+        div.on('click',function(){
+            $.ajax({
+                // url地址
+                url:'http://127.0.0.1:8000/jqueryAll',
+                // 参数
+                data:{a:10,b:20},
+                //请求方式
+                type:'GET',
+                //返回数据类型
+                dataType:'json',
+                //成功回调函数
+                success:function(data){
+                    div.html(data.name)
+                },
+                //超时时间
+                timeout:4000,
+                // 失败回调
+                error:function(){
+
+                },
+                //头信息
+                headers:{
+                    c:30,
+                    d:40
+                }
+            })
+        })   
+    </script> -->
+
+    <!-- fetch方法发送ajax请求 -->
+    <!-- <div></div>
+    <script>
+        const div = document.querySelector('div')
+        div.onclick = function(){
+            fetch('http://127.0.0.1:8000/fetch',{
+                // 请求方法
+                method:'POST',
+                // 请求头
+                headers:{
+                    age:18
+                },
+                // 请求体
+                body:'username=admin&pasword=admin'
+            }).then(response => {
+                return response.json();
+            }).then(response => {
+                div.innerHTML = response.name
+            })
+        }
+    </script> -->
+
+    <!-- jsonp跨域 -->
+    <!-- <input type="text">
+    <div></div>
+    <script>
+        // 文件名从本地文档发送到http，属于跨域
+        // 获取元素
+        const inp = document.querySelector('input')
+        const div = document.querySelector('div')
+        // 声明handle函数
+        function handle(data){
+            // 修改样式
+            inp.style.border = "1px solid green"
+            div.innerHTML = data.tips
+        }
+        // 绑定事件
+        inp.onblur = function(){
+            // 获取用户输入值
+            let username = this.value
+            // 向服务器发送请求，检测用户名是否存在
+            // 1.创建script标签
+            const script = document.createElement('script')
+            // 2.设置标签src属性
+            script.src = 'http://127.0.0.1:8000/jsonp'
+            // 3.将文档标签插入到文档最后
+            document.body.appendChild(script)
+        }   
+    </script> -->
+
+    <!-- jq实现jsonp跨域 -->
+    <!-- <button>获取数据</button>
+    <div></div>
+    <script>
+        // 点击事件
+        $('button').eq(0).click(function(){
+            // 固定写法，注意后面参数一定要加
+            $.getJSON('http://127.0.0.1:8000/jqjsonp?callback=?',function(data){
+                // 处理获取到的数据
+                $('div').html(`
+                    名称：${data.name},
+                    年龄：${data.age}
+                `)
+            })
+        }) 
+    </script> -->
+
+    <!-- cors设置响应头实现跨域 -->
+    <button>获取</button>
+    <div></div>
+    <script>
+        const btn = document.querySelector('button') 
+        const div = document.querySelector('div')
+        btn.onclick = function(){
+            const xhr = new XMLHttpRequest()
+            xhr.open("GET",'http://127.0.0.1:8000/corss')
+            xhr.send()
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        div.innerHTML = xhr.response
+                        console.log(1)
+                    }
+                }
+            }
+        }
+    </script>
+
+    
+
+</body>
+</html>

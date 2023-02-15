@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>bootstrap基础</title>
+    <!-- bootstrap的css文件，放在所有css样式前 -->
+    <link rel="stylesheet" href="./bootstrap-3.4.1-dist/css/bootstrap.css">
+<body>
+    <!-- 简介 
+        bootstrap是前端框架，用于构建响应式，移动设备优先的网站
+        bootstrap5不支持IE浏览器，请使用bootstrap4
+        如果jq存在于window中，那想监听bootstrap的事件必须使用jq的方法
+    -->
+    <!-- 使用方式
+        1.官方下载bootstrap文件
+        2.引入bootstrap.css，bootstrap.js，jq文件
+        3.根据官方文档，复制粘贴，根据api修改 
+     -->
+
+    <!-- 布局
+    容器：
+        .container类是一个响应式固定宽度的容器，视口宽度不同，样式宽度不同      
+        可以使用媒体查询设置断点
+
+    栅格系统：
+        每列需要加.container类
+            .container-fluid类容器表示宽度一直为100%
+            .container-sm/md/lg/xl,表示不同分辨率不同宽度
+
+        每行需要加.row类，
+            .row-cols-2类 表示每行两列，可以通过.row-cols-sm-2调整
+            .align-items-start/center/end类 表示行在列中的位置
+            .justify-content-start/center/end/around/between类 表示行中列的排列方式
+            .no-gutters类 表示去除行中内边距
+        
+        行中每列需要加.col-划分份数
+            .col类表示平分剩余份数
+            .w-100类表示换行
+            每行中可以划分12份，使用.col-sm/md/lg/xl-类 划分，超出12换行
+            .col-md-auto类 表示根据内容宽度调整份数
+            .align-self-start/center/end类 表示列在行中位置
+            .order-1~12类 排列顺序，没有此类的不参加排序
+            .order-first/last类 表示第一或最后
+            .offset-md-1~12类 表示左边距增加份数
+            .ml-auto类表示左侧彼此远离，.mr-auto类表示右侧彼此远离
+            在行中列中添加.row类可以实现嵌套
+
+    布局工具：
+        bootstrap4使用flexbox构建，最好不要改变display，可以修改visibility实现隐藏
+     -->
+
+    <!-- 内容
+    文字：
+        .h1~6，设置文字大小
+        .display-1~6，设置标题
+        .text-muted，浅色标题#777
+        .lead，脱出常规文档，下边距20px
+        .initialism，abbr缩写显示字体稍小
+        .text-centent，文本居中
+        .text-right，文本靠右
+        .list-unstyled，去除列表左边距，去除列表索引
+        .list-inline，.list-inline-item，列表并排显示
+        .text-truncate，超出隐藏省略号
+    代码：
+        .pre-scrollable，设置pre代码块垂直滚动
+        var标签识别变量
+        kbd标签表示键盘输入
+        samp标签表示程序示例输出
+    图片：
+        .img-fluid，表示max-width：100%，height：auto
+        .img-thumbnail，表示图片外观有1px宽度的圆形边框
+        .rounded .float-start，图片左浮动
+        .rounded .float-end，图片右浮动
+    表格：
+        .table，表示一个表格
+        .table-颜色，修改表格背景色
+        .table-striped，表格斑马条纹
+        .table-light，灰条纹
+        .table-dark，黑条纹
+        .table-hover，悬停行
+        .table-active，行变色
+        .table-bordered，带边框
+        .table-borderless，无边框
+        .table-sm，padding减半，表格更紧凑
+        .align-middle，居中对齐
+        .align-bottom，底部对齐
+        .align-top，顶部对齐
+        caption表格标题
+        .caption-top，表格标题显示在顶部
+        .table-responsive，表格响应布局
+     -->
+
+    <!-- 表单
+    控件：
+        .form-label，表示lable关联内容
+        .form-control，表示表单控件
+        .form-control-lg/sm，文本框高度
+        disabled，禁止输入
+        readonly，只读
+        .form-control-plaintext，删除默认样式
+        .form-control-color，颜色选择器样式
+    选择器：
+        .form-select，选择器样式
+        .form-select-lg/sm，选择器高度
+        multiple属性表示多选
+        size属性表示显示多少行
+        disabled属性表示禁用
+    单(复)选框：
+        .form-check，选框区域样式
+        .form-check-input,选框关联lable
+        .form-check-label，选框样式
+        role="switch"，复选框开关表示
+        disabled属性表示禁用
+        .btn-check，按钮样式选框
+    范围：
+        .form-range，范围样式
+        min,max属性设置范围值
+        step属性设置步长
+        disable属性禁用
+    文本框嵌套：
+        .input-group，表示一行
+        .input-group-text,表示嵌入的文本，使用span
+        .input-group-sm/lg，表示文本框高度
+        .mt-0，复选框嵌套时添加
+    浮动标签：
+        .form-floating，浮动标签样式
+
+
+
+
+     -->
+
+
+
+
+
+
+
+<!-- Popper 与 Bootstrap 的集成包 -->
+<script src="./../jQuery基础/jquery.mini.js" ></script>
+<script src="./bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+</body>
+</html>

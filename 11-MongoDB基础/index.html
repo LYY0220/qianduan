@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDB基础</title>
+</head>
+<body>
+    <!-- 
+    数据库简介：
+        数据库是按数据结构来组织、储存和管理数据的仓库
+        程序都是在内存这种运行，一旦程序运行结束或者计算机断电，运行中的数据就会丢失
+        需要将一些程序运行的数据持久化到硬盘中，确保数据安全性，数据库就是数持久化的最佳选择
+        数据库主要分为两种：
+            关系型数据库(RDBMS):
+                MySQL、Oracle、DB2、SQL Server....
+                关系型数据库中全是表
+            非关系型数据库(Not Only SQL)
+                MongoDB、Redis....
+                键值对数据库
+                文档型数据库（MongoDB）
+    
+    MongoDB简介：
+        MongoDB是为了 快速开发互联网Web应用 而设计的数据库系统
+        设计目标是简介灵活作为Web应用栈的一部分
+        数据模型是面向文档的(BSON)，类似JSON的结构，可以储存JSON和二进制数据
+
+        下载地址：https://www.mongodb.com/
+        配置环境变量
+        测试安装成功：cmd->mongod，访问http://localhost:27017/
+        默认数据库目录：data文件夹新建db文件夹
+        自定义数据库目录：mongod --dbpath 路径 
+        自定义端口：mongod --port 端口号（不能超过65535）
+        链接Mongo数据库：
+            Mongo6之前可以在终端输入 mongo直接进入Mongoshell
+            Mongo6需要自主下载Mongoshell 配置环境变量 终端输入mongosh进入Mongoshell
+        使用mongod启动数据库服务器 再使用mongosh启动数据库客户端
+            
+    MongoDB基本操作：
+        显示所有数据库                  show databases 
+                                       show dbs
+        进入数据库                      use 数据库名
+        显示当前数据库                  db
+        显示当前数据库中所有集合         show collections
+
+        插入文档                        db.集合名.insert({文档内容})
+            插入单个文档                db.集合名.insertone({内容})
+            插入多个文档                db.集合名.insertMany([{内容},{内容}])
+        查询文档
+            查询所有文档                db.集合名.find()
+            根据属性查询                db.集合名.find({字段："值"})
+            返回第一个满足的文档        db.集合名.fingdone({字段："值"})
+            统计满足数量                db.集合名.find({字段："值"}).count()
+            跳过条数                    db.集合名.find().skip(num)
+            显示条数                    db.集合名.find().limit(num)
+            比较运算符                  db.集合名.find({"字段":{运算符："值"}})
+        修改文档 
+            全部修改                   db.集合名.update({字段："值"}，{新内容})
+            修改指定属性                db.集合名.update({字段："值"},{$set:{修改内容}})
+            删除指定属性                db.集合名.update({字段："值"},{$unset:{删除内容}})
+            修改多个文档                db.集合名.updateMany()
+            修改单个文档                db.集合名.updateOne()
+            替换一个文档                db.集合名.replaceOne()
+        删除文档
+            删除文档                    db.集合名.remove({字段："值"},true)
+            删除单个文档                db.集合名.deleteOne({字段："值"})
+            删除多个文档                db.集合名.deleteMany({字段："值"})
+            清空集合                    db.集合名.remove({}) 
+            删除集合                    db.集合名.drop()
+            删除数据库                  db.dropDatabase()   
+        排序：
+            按属性排序(1升序 -1降序)     ab.集合名.find().sort({字段：1/-1})
+            投影(1显示 0不显示)          ab.集合名.find({条件}，{字段：1/0})
+        运算符：
+            $push                       向数组中添加新的元素
+            $addToSet                   向数组中添加新的元素,存在则添加失败
+            $eq                         等于 用法:db.集合名.find({字段：{$eq:数值}})
+            $gt                         大于
+            $gte                        大于等于
+            $lt                         小于
+            $lte                        小于等于
+            $ne                         不等于
+            $or                         或者 用法:db.集合名.find({$or[{$eq:数值},{$eq:数值}]})
+
+    Mongoose简介：
+        Mongoose可以通过node来操作MongoDB的模块
+        Mongoose是对象文档模型库(ODM),对Node原生MongoDB模块进行优化封装，提供更多功能
+        大多数情况下用来把结构化的模块应用到一个MongoDB集合，提供验证和类型转换等功能
+
+        monsoose提供了几个新对象
+            Schema：模式对象 定义约束了数据库中的文档结构
+            Model：相当于MongoDB中的集合 用来操作数据库
+            Document：相当于集合中一个具体的文档
+
+        使用：
+            1.下载Mongoose          npm i mongoose --save
+            2.引入mongoose          var mongoose = require("mongoose")
+            3.链接mongoDB数据库     官方文档：https://mongoosejs.com/
+            4.数据库断开
+            5.数据库链接监听        
+        
+
+
+
+
+
+
+
+
+
+
+
+     -->
+</body>
+</html>
