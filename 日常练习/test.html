@@ -252,6 +252,26 @@
                     }
                 }
             }
+        }) 
+    </script>
+
+    <button class="btn13">btn13</button>
+    <div class="div13"></div>
+    <script>
+        var btn13 = document.querySelector(".btn13")
+        var div13 = document.querySelector(".div13")
+        btn13.addEventListener("click",function(){
+            var test13 = new XMLHttpRequest()
+            test13.open("GET","http://127.0.0.1:8000/test13?a=test13")
+            test13.send()
+            test13.onreadystatechange = function(){
+                if(test13.readyState === 4){
+                    if(test13.status >= 200 && test13.status < 300){
+                        var obj = JSON.parse(test13.responseText)
+                        div13.innerText = obj.a
+                    }
+                }
+            }
         })
     </script>
 </body>
