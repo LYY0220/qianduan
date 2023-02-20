@@ -9,7 +9,78 @@
 <body>
     <!-- 
     vue简介：
+        https://cn.vuejs.org/
         一套用于构建用户界面的渐进式js框架
+        特点：
+            采用组件化模式，提高代码复用率，让代码更好维护
+            声明式编码，让编码人员无需直接操作DOM，提高开发效率
+            使用虚拟DOM+Diff算法，尽量复用DOM节点
+        引入：下载引入，在线引入
+        环境搭建：
+            安装vue开发者调试工具
+            script中写入Vue.config.productionTip = false
+
+
+
+    vue基本使用：
+        vue实例：
+            new Vue({
+                el:"选择器"，           选定容器
+                data:{                  储存容器中数据
+                    key:value
+                },
+                methods{                存放事件
+                    fun()
+                }
+            })
+
+        模板语法：
+            插值语法                {{key}}
+            指令语法                v-xxx:
+
+        数据绑定：
+            单向绑定                v-hind：
+            双向绑定 输入类元素      v-model：
+
+        实例属性写法：
+            el：
+                vue实例中   el:""
+                vue实例对象.$mount("")
+            data：
+                vue实例中   data:{...}
+                vue实例中   data:function(){return{...}}
+
+        MVVM模型：
+            M:模型Model，data中的数据
+            v:视图view，模板代码
+            vm:视图模型viewmodel，vue实例
+
+        defineProperty：
+            向对象添加属性并控制权限
+            Object.defineProperty(对象，"属性名"，{
+                value：属性值，                 定义属性值
+                enumerable：true，              属性是否可以枚举，默认false
+                writable：true                  属性是否可以被修改，默认false
+                configurable：true              属性是否可以被删除，默认false
+                get(){return }                  读取属性时调用，且属性值为返回值
+                set(v){...}                     修改属性时调用，且属性值为参数值
+            })
+        
+        数据代理：
+            定义：通过 vue实例对象 对 data中属性进行操作
+            原理：
+                通过 defineProperty()方法 把 data对象所有属性 添加到 vue实例对象 上
+                给每个添加属性都指定一个getter、setter
+                在getter、setter内部去操作data中的值
+
+        事件处理：
+            绑定事件                v-on:click="fun($event,...)" 或者 @click="..."
+            
+
+
+
+
+
         
 
 

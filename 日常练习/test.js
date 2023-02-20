@@ -119,6 +119,15 @@ app.get("/test13",(rq,rs) => {
     }
     var jsonobj = JSON.stringify(obj)
     rs.send(jsonobj)
+}) 
+
+app.get("/test14",(rq,rs) => {
+    rs.setHeader('Access-Control-Allow-Origin','*')
+    var obj = {
+        a:rq.query.a
+    }
+    var jsonobj = JSON.stringify(obj)
+    rs.send(jsonobj)
 })
 
 

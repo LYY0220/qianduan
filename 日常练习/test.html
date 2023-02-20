@@ -273,6 +273,24 @@
                 }
             }
         })
+    </script> 
+
+    <button class="btn14">btn14</button>
+    <div class="div14"></div>
+    <script>
+        var btn14 = document.querySelector(".btn14")
+        var div14 = document.querySelector(".div14")
+        var test14 = new XMLHttpRequest()
+        test14.open("get","http://127.0.0.1:8000/test14?a=test14")
+        test14.send()
+        test14.onreadystatechange = function(){
+            if(test14.readyState === 4){
+                if(test14.status >= 200 && test14.status < 300){
+                    var obj = JSON.parse(test14.responseText)
+                    div14.innerText = obj.a
+                }
+            }
+        }
     </script>
 </body>
 </html> 
