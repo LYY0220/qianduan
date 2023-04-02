@@ -7,8 +7,9 @@
     <title>vue</title>
 </head>
 <body>
-    <!-- 
-    vue简介：
+    
+    <!-- vue简介
+    
         https://cn.vuejs.org/
         一套用于构建用户界面的渐进式js框架
         特点：
@@ -19,20 +20,45 @@
         环境搭建：
             安装vue开发者调试工具
             script中写入Vue.config.productionTip = false
+    -->
 
-
-
-    vue基本使用：
-        vue实例：
-            new Vue({
-                el:"选择器"，           选定容器
-                data:{                  储存容器中数据
-                    key:value
-                },
-                methods{                存放事件
-                    fun()
+    <!-- vue基本使用
+        new Vue({
+            el:"选择器"，                       选定容器
+            data:{                              储存容器中数据
+                key:value
+            },
+            methods{                            存放事件
+                fun()
+            },
+            computed:{                          属性计算
+                newkey:{
+                    get(){return...}，          属性获取时调用
+                    set(v){return..}            属性改变时调用
                 }
-            })
+            },
+            watch:{                             属性监视
+                key:{
+                    immediate:true，            初始化时自动调用一次   
+                    deep：true，                属性深度监视
+                    handler(new,old){...}       属性改变时调用
+                }
+            }，
+            filters:{                           过滤器
+                过滤器名(value){return..}       
+            }，
+            directives:{                        自定义指令
+                自定义指令名(element,binding){}  函数形式定义
+                自定义指令名(){                  对象形式定义
+                    bind(){},                   与元素绑定成功时调用
+                    inserted(){},               所在元素被插入页面时调用
+                    update(){}                  所在模板重新解析时调用
+                }
+            }，
+            mounted(){}                         页面DOM挂载完毕调用
+
+
+        })
 
         模板语法：
             插值语法                {{key}}
@@ -41,6 +67,49 @@
         数据绑定：
             单向绑定                v-hind：
             双向绑定 输入类元素      v-model：
+
+        事件绑定：                  v-on:click="fun($event,...)" 或者 @click="..."
+            事件修饰符：
+                阻止默认事件            @click.prevent=...
+                阻止事件冒泡            @click.stop=...
+                事件只触发一次          @click.once=...
+                使用事件捕获模式        @click.capture=...
+                当前操作元素触发        @click.self=...
+                立即执行默认事件        @click.passive=...
+            按键修饰符：@keyup.ctrl\alt\shift\meta
+                配合keyup使用表示，按下修饰键，再按下其他键，再抬起其他键，才会触发
+                配合keydown使用表示正常触发事件
+            
+        class绑定：             :class="类名/类名数组/类名对象"
+        style绑定：             :style="{k:v}/obj/arr"
+
+        条件渲染：显示(切换频繁)：  v-show:""       不频繁：v-if:""  v-else-if:""    v-else:""  
+        列表渲染：循环：v-for="(key,value) in obj" :key="index"   使用：{{p.***}}  
+        
+        收集表单数据：v-model="自定义数据名"
+            单选框需要设置value值，多选框数据定义为数组形式并设置value值                
+            v-model修饰符：lazy失去焦点，number数字型，trim过滤首尾空格
+
+        过滤器：使用：{{数据 | 过滤器名 | 过滤器名}}
+
+        内置指令：
+            文字格式替换节点内容            v-text
+            html格式替换节点内容            v-html
+            结构没渲染完成前样式            v-cloak
+            初次渲染后变为静态              v-once
+            跳过节点解析语法                v-pre
+        
+        自定义指令：定义式不加v-，使用时需要加v-
+
+        生命周期：
+            将要创建            beforeCreate(){}
+            创建完毕            created(){}
+            将要挂载            beforeMount(){}
+            挂载完毕            mounted(){}
+            将要更新            beforeUpdate(){}
+            更新完毕            updated(){}
+            将要销毁            beforeDestroy(){}
+            销毁完毕            destroyed(){}
 
         实例属性写法：
             el：
@@ -72,15 +141,405 @@
                 通过 defineProperty()方法 把 data对象所有属性 添加到 vue实例对象 上
                 给每个添加属性都指定一个getter、setter
                 在getter、setter内部去操作data中的值
+     -->
 
-        事件处理：
-            绑定事件                v-on:click="fun($event,...)" 或者 @click="..."
+    <!-- 组件化
+        定义：实现应用中局部功能代码和资源的集合
+        非单文件组件：一个文件中包含多个组件
+        单文件组件：一个文件就是一个组件
+        原理：
+            组件的本质是一个VueComponent的构造函数，是Vue.extend生成的
+            只要使用组件，Vue解析会执行new vuecomponent(options)
+            组件中函数this指向VueComponent实例对象
+            VueConpontent.prototype.__proto__ === Vue.prototype
+            组件实例对象可以访问到vue原型的属性和方法
+
+        非单文件组件使用：
+            创建组件：
+                var 组件名 = Vue.extend({
+                    tempalte:"html结构"
+                    data(){return{组件中数据}}
+                })
+            注册组件：
+                局部注册组件：在vue实例中components:{定义组件名：创建组件名}
+                全局注册组件：Vue.component("定义组件名",创建组件名)
+            使用组件：
+                <定义组件名></定义组件名>
+            组件嵌套：子组件在父组件中注册组件
+
+        单文件组件使用：
+            创建组件：
+                创建vue文件
+                <template> 组件结构 </template>
+                <script> 组件交互代码数据方法 </script>     使用export dafault向外暴露组件实例
+                <style></style>                            标签中可以加入scoped 或者lang=“”
+            入口文件：
+                创建main.js 或 app.js
+                使用import .. from "..." 引入组件
+                新建容器的vue实例，components:{组件名}
+            使用组件：
+                下载配置脚手架，文件放入脚手架中
+                在容器中使用组件标签，或者在vue实例中template:`组件标签`
+            组件嵌套：在父组件中使用import引入子组件，components:{组件名}，使用子组件标签
+
+        vue cli脚手架：
+            全局安装            npm install -g @vue/cli
+            创建脚手架          目录下vue create 脚手架名
+            运行脚手架          脚手架目录下npm run serve
+            关闭脚手架          ctrl+c * 2
+        
+        属性：
+            ref="xxx"：
+                获取方式：this.$refs.xxx
+                普通元素获取到的是真实DOM元素
+                组件标签获取的是组件实例对象
+            props：{name：{type：...,required:true，default：""},...}
+                组件使用外部传入数据
+                可以定义数据类型，是否为必须,，默认值
+                数据不可修改
+            mixin：
+                把多个组件公用的配置提取成一个混入对象
+                定义：
+                    expent var 混合名 = {
+                        data(){},
+                        methods:{}
+                    }
+                引用：
+                    import引入
+                    全局：Vue.mixin(混合名)
+                    局部：mixins:["混合名"，""]
+            this.$nextTick(()=>{...})           数据改变从新解析结构
+
+        组件化编写流程：
+            1.拆分静态组件：抽取组件，使用组件实现静态页面效果
+            2.实现动态组件：数据存放位置
+            3.实现交互：绑定事件开始
+            注意：
+                1.props适用于父子组件之间通信
+                2.v-model不能绑定props传输的值
+        
+        组件自定义事件：
+            子组件要给父组件传数据，需要在父组件中给子组件绑定事件
+            绑定：
+                @自定义事件名 = "函数名"
+                函数名(name){...}
+            触发：
+                子元素触发事件(){
+                    this.$emit("自定义事件名"，this.name)
+                }
+            解绑：
+                this.$off("自定义事件名")
+        
+        全局事件总线:
+            在main.js中安装全局事件总线：
+                new Vue({
+                    ...
+                    beforeCreate(){
+                        Vue.prototype.$bus = this
+                    }
+                })
+            在组件中使用事件总线接收数据：
+                methods(){
+                    自定义事件(data){...}
+                }
+                mounted(){
+                    this.$bus.$on("触发事件",this.自定义事件)
+                }
+            提供数据：
+                this.$bus.$emit("触发事件"，data)
+
+        过度动画：
+            使用transition包裹元素，并配置name
+            进入样式：.name-enter     .name-enter-active    .name-enter-to
+            离开样式：.name-leave     .name-leave-active    .name-leave-to
+
+        插件
+            可以在插件中放入全局过滤器、全局指令、全局混合、实例方法等
+            定义：
+                export default{
+                    install(Vue,....){
+                        全局过滤器、全局指令、全局混合、实例方法
+                    }
+                }
+            引用：
+                import引入，Vue.use()使用
             
+        插槽 
+            slot：默认插槽，会替换父组件插入的东西
+            slot name=“”，具名插槽，会替代template标签中 v-slot相同的内容
 
+        配置代理 vue cli文档devSer.proxy
+    -->
 
+    <!-- vuex
+        定义：对vue中数据实现集中式状态管理的一个vue插件
+        安装：
+            vue2对应vuex3           vue3对应vuex4
+            安装vuex                bpm i vuex@3
+            
+        配置：
+            src -> store ->index.js
+            import Vuex from "vuex"     引入vuex
+            Vue.use(Vuex)               使用vuex
+            const sctions = {           actions用于响应组件中动作
+                自定义名(context,value){
+                    context.commit("自定义名"，value)
+                }
+            }                 
+            const mutations = {         mutations用于操作数据
+                自定义名(state,value){
+                    state.num += value  对通用数据进行处理
+                }
+            }                   
+            const state = {             state用于储存数据
+                通用数据
+            }
+            export default new Vuex.Store({     创建并暴露store
+                actions,
+                mutations,
+                state,
+            })
+        引入：
+            main.js         import store from "./store"
+        使用：
+            main.js中实例中加入store属性
+            在组件中使用    this.$store.dispatch("自定义"，num)
+            在store index.js sctions中接收处理
+            在store index.js mutations中接收处理
+            在组件中使用$store.state.sum获取数据
+        getters：
+            定义getters并向外抛出，在getters中写入处理数据的方法，使用this.$store.setters.fun()调用
+      -->
 
+    <!-- 路由
+        vue的一个插件库vue-router，用来实现spa应用
+        spa：单页web应用，整个应用只有一个完整的页面，点击导航栏不会刷新页面，只会局部更新，数据通过ajax获取
+        安装：npm i vue-router@3
+        配置：
+            src -> router -> index.js
+            引入路由插件及其他自定义组件
+            export default new 路由插件名({
+                routers：[
+                    {
+                        path:"/路径名",
+                        component:组件名
+                    }，
+                    ...
+                ]
+            })
+        引用：main.js
+            import引用，use使用路由插件
+            import引用路由组件
+            vm中添加router属性
+        使用：
+            <router-link active-class="" to="/组件路径名"></router-link>
+            <router-view></roter-view>      组件位置
+        注意：
+            路由组件通常放在pages文件夹中，一般组件放在components文件夹中
+            通过切换，隐藏的路由组件默认是被销毁掉的
+            每个组件都有自己的$route属性，存放自己的路由信息
+            整个应用只有一个router，通过$router获取到
+        多级路由：
+            配置路由规则时，一级路由中多写一个配置项children:[{path:"路径名",component:组件名}]
+            roter-link中路径名要加上父组件路径
+        query参数：
+            :to="`path?k1=*&k2=*`"
+            :to="{path:"",query:{k1:v1,k2:v2}}"
+            接收参数：$route.query.k1
+        params参数：
+            配置路由：path:"...../:k1/:k2"
+            传递参数：:to="path/k1/k2"      :to="{name:"",params:{...}}"
+            接收参数：$route.params.k1
+        路由命名：
+            配置路由时可以加name属性，:to中page:"" 可以改为 name:""
+            使用params传参是必须使用name
+        配置props：
+        1.  路由规则中添加props:{k1:v1,k2:v2}
+            组件中使用props:["k1","k2"]接收
+        2.  路由规则中添加props:true
+            会把该路由组件收到的所有params参数以props的形式传给组件
+        3.  路由规则中添加props($route){return{k1:$route.qurey.k1}}
+        路由跳转历史记录：
+            路由跳转默认为push，追加历史记录
+            router-link中添加replace替换当前记录
+        编程时路由导航：
+            不使用router-link实现导航
+            在按钮上绑定事件
+            this.$router.push/replace({
+                name:"组件路由配置的name",
+                params/query：{
+                    k1:...,
+                    k2:...
+                }
+            })
+        缓存路由组件：
+            在需要缓存的路由组件的父组件的router-view外层添加keep-alive标签，include="组件名"
+        路由声明周期：
+            activated(){}       组件被激活
+            deactivated(){}     组件失活
+        全局前置路由守卫：
+            定义路由器并接收
+            路由器.beforeEach((to,from,next)=>{     路由跳转及运行
+                if(路由判断){                       通过from.name/path筛选
+                    。。。                          或者在路由中配置meta:{isAuth:false}
+                }else{                              使用to.meta.isAuth判断
+                    next                            往下运行
+                }
+            })
+            export dafault 路由器
+        全局后置路由守卫：
+            路由器.afterEach((to,from)=>{           路由跳转后执行
+                ...                                 可以在meta中存放数据，跳转后改标题
+            })
+        独享路由守卫：
+            在配置路由时，把前置路由守卫放进去
+        组件内守卫：
+            beforeRouteEnter(to,from,next){}         通过路由规则进入该组件时调用
+            brforeRouteLeave(to,from,next){}         通过路由规则离开该组件时调用
+        路由器工作模式：
+            路由器中配置mode属性，有两个可选值hash，history
+            hash：#往后的内容是hash值，不会包含在HTTP请求中
+            history：兼容性略差，部署上线需要解决刷新页面服务端404问题
+            上线：npm run build，把vue文件打包成html，css，js文件
+     -->
 
+    <!-- element-ul
+        定义：Vue UI组件库        http://element.eleme.cn
+        其他组件库：
+            Vant：          https://youzan.github.io/vant
+            Cube UI         https://didi.github.io/cube-ui
+            Mint UI         http://mint-ui.github.io
+            IView UI        https://www.ivewui.com
+        使用：
+            安装下载element-ui
+            在main.js中引入并使用element-ui
+            复制粘贴代码到组件中
+        按需引入，官方文档修改配置
+            "es2015"应该改为"@babel/preset-env"
+     -->
 
+    <!-- vue3
+        特点：
+            性能提升，打包大小减少，内存减少，渲染更快
+            源码升级，使用Proxy替代defineProperty实现响应式
+            可以更好支持TypeScript
+            新特性
+        使用vue-cli创建工程
+            安装vuecli，确保vue是3.0.0以上，vue-cli是4.0.0以上
+            创建工程        vue create 工程名
+            运行脚手架      npm run serve
+        setup：
+            vue3中使用setup(){return}放置数据与方法，vue2可以访问vue3，vue3不能访问vue2
+            在beforeCreate之前执行一次，this是undefined
+            参数：setup(props，context){}
+                props：外部传递过来，组件内部接收了，才可以用
+                context：
+                    attrs对象：外部传入，组件内部props没接收的数据
+                    slots对象：在子组件上自定义事件，子组件内触发事件context.emit("自定义事件",参数)
+                    slots对象，收到插槽的内容，相当于this$slots
+        ref：
+            数据响应式
+            import {ref} from "vue"
+            在setup中定义数据时使用 let name = ref("...")
+            js操作ref数据时，使用k1.value，模板字符串直接使用{{k1}}
+            js操作ref对象中数据时，使用对象.k1，不需要value
+        reactive：
+            对象响应式，不能定义数据
+            import {reactive} from "vue"
+            在setup中定义对象时使用 let obj = reactive({...,...})
+            深层次响应数据
+        vue2响应式原理：
+            对象类型：通过obj.defineProperty()对属性进行读取修改拦截
+            数组类型：通过重写更新数组的一系列方法来实现拦截
+            缺点：新增删除属性，过下标改数组，界面不更新   
+        vue3响应式原理：
+            通过Proxy拦截对象中任意属性的变化，通过Reflect对对象的属性进行操作
+        reactive与ref
+            ref定义基本数据类型，rective定义对象或者数组
+            ref通过obj.defineProperty的get与set实现响应式
+            reactive通过Proxy实现数据劫持，通过Reflect操作数据
+            ref操作数据需要.value，模板不需要使用.value
+            reactive定义的数据都不需要.value
+        computed函数 属性计算：
+            import {computed} from "vue"
+            setup(){
+                let 属性名 = computed(()=>{
+                    return 属性计算后的值
+                })
+            }
+        watch函数 监视：
+            import {watch} from "vue"
+            监视ref定义的响应式数据
+                watch({k1,k2},(new,old)=>{...},{immediate:true,deep:true})
+            监视reactive定义的响应式数据：
+                无法获得oldValue，强制开启深度监视
+                watch(obj,(new,old)=>{...})
+            监视reactive定义的响应式数据中某个对象
+                watch(() => obj.k1,(new,old) => {...})
+        watchEffect函数 监视
+            import {watchEffect} from "vue"
+            函数中用到谁就监视谁,属性变化就执行
+            watchEffect(() => {var k = k1 .....})
+        生命周期：
+            beforeDestory  ==>  beforeUnmount
+            destroyed      ==>  unmoiunted
+        自定义hook函数
+            src -> hook use**.js
+            引入相关组件，书写复用代码并向外抛出
+            其他组件引用并使用
+        toRef与toRefs:
+            作用：创建一个ref对象，value值指向另一个对象的某个属性
+            用法：const k1 = toRef(obj,"k")         k1.value
+            将响应式对象中的某个属性单独提供给外部使用，
+            const obj = toRefs(obj1)        obj.k1.value
+        shallowReactive 与 shallowRef
+            shallowReactive定义数据：只处理最外层数据响应式
+            shallowRef定义数据：只处理基本数据类型响应式，不进行对象响应式处理
+        readonly 与 shallowReadonly
+            readonly让一个响应式数据变为只读，深只读
+            shallowReadonly让一个响应式数据变为只读，浅只读
+        toRaw 与 markRaw
+            toRaw将一个由reactive生成的响应式对象变成普通对象
+            markRaw，标记一个对象，永远不能变为响应式对象
+        customRef：自定义ref
+        provieo 与 inject
+            实现祖孙组件通信
+            祖组件中：
+                setup(){
+                    let obj = reactive({k1:v1,k2:v2})
+                    provide("obj",pbj)
+                }
+            孙组件中：
+                setup(props,context){
+                    let obj = inject("obj")
+                }
+        响应式数据判断：
+            isRef           检查一个值是否为ref对象
+            isReactive      检查一个值是否为reactive创建的响应式代理
+            isReadonly      检查一个值是否为readonly创建的只读
+            isProxy         检查一个值是否为reactive或readonly方法创建
+        组合API 与 配置API
+            Options API：
+                vue2中使用配置API
+                修改一个需求需要分别在data，methods，computed里修改
+            Composition API
+                vue3中使用组合API
+                更优雅的组织我们的代码函数，使相关功能代码有序的组合在一起
+        组件：
+            Fragment：
+                在vue2中，组件必须有一个根标签
+                在vue3中，组件可以没有根标签，内部会将多个标签包含在Fragment虚拟元素中
+            teleport：
+                移动到指定位置
+                <teleport to="HTMLElement">....</teleport>
+            Suspense：
+                实验阶段，等待异步组件时渲染一些额外内容
+        其他改变：
+            全局属性变化：Vue.xxx   ==>     app.xxx   
+            类名过度变化：v-enter/leave   ==>     v-enter/leave-from
+            移除keyCode作为v-on修饰符，不支持config.keyCodes
+            移除v-on.native修饰符
+            移除过滤器
         
 
 
@@ -90,6 +549,13 @@
 
 
 
+
+
+
+
+
+
      -->
+
 </body>
 </html>
