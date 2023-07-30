@@ -1,0 +1,73 @@
+.banner{
+    width: 960px;
+    height: 540px;
+    margin:100px auto 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+.banner .img{
+    width: 30000px;
+    height: 540px;
+    position: absolute;
+}
+.banner .img a{
+    float: left;
+}
+.banner .img a img{
+    width: 960px;
+    height: 540px;
+}
+.banner .switch div{
+    display: none;
+    font-size: 60px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    top: 240px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.banner .switch div:hover{
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.banner .switch .left{
+    left: 20px;
+}
+.banner .switch .right{
+    right: 20px;
+}
+.banner .foot{
+    line-height: 60px;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 60px;
+    width: 100%;
+}
+.banner .foot .title{
+    margin-left: 20px;
+    float: left;
+}
+.banner .foot .spot{ 
+    margin-right: 20px; 
+    float: right;
+}
+.banner .foot .spot .current{
+    background-color: red;
+}
+.banner .foot .spot a{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+.banner .foot .spot a:hover{
+    background-color: red;
+}

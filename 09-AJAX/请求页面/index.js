@@ -29,7 +29,7 @@ app.post('/server',(request,response)=>{
 })
 
 //可以接受任何请求
-app.all('/server',(request,response)=>{
+app.all('/server',(request,response)=>{ 
     //设置响应头    设置允许跨域
     response.setHeader('Access-Control-Allow-Origin','*')
     // 设置响应头，所有响应头信息都可以接受

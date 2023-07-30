@@ -163,7 +163,7 @@
             const div = $('div').eq(0)
             div.on('click',function(){
                 $.get('http://127.0.0.1:8000/jquery',{a:10,b:20},function(e){ 
-                    div.html(e.name)
+                    div.html(e.name) 
                 },'json')
             })
         })
@@ -254,7 +254,7 @@
     </script> -->
 
     <!-- jq实现jsonp跨域 -->
-    <!-- <button>获取数据</button>
+    <!-- <button>获取数据</button> 
     <div></div>
     <script>
         // 点击事件

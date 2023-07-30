@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./../05-jQuery基础/jquery.mini.js"></script>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="div1">信息</div>
+    <div class="div2"></div>
+    <!-- <script src="./index.js"></script> -->
+    <script>
+
+        $.ajax({
+            // url地址
+            url:'http://yy.ln3w.com/api/config',
+            // url:"http://fuletonsan.ln3w.com/api/product",
+            // 参数
+            // data:{ url:"https://fuletonsan.ln3w.com/qrcode?id=1"},
+            //请求方式
+            type:'post',
+            //返回数据类型
+            dataType:'jsonp',
+            //成功回调函数
+            success:function(data){
+                console.log(data)
+            },
+            //超时时间
+            // timeout:4000,
+            // 失败回调
+            // error:function(){
+            // },
+            // //头信息
+            // headers:{
+            //     c:30,
+            //     d:40
+            // }
+        })
+
+
+
+
+
+
+    </script>
+</body>
+</html>

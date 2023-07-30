@@ -15,7 +15,7 @@ window.onload = function(){
     var canvas3 = test3.getContext("2d")
     canvas3.clearRect(50,50,100,100)
     // 直线路径
-    var test4 = document.querySelector(".test4")
+    var test4 = document.querySelector(".test4") 
     var canvas4 = test4.getContext("2d")
     canvas4.moveTo(50,50)
     canvas4.lineTo(150,50)

@@ -4,7 +4,7 @@ function Fn1(){
     this.fn1Name = "父"
 }
 // 父类型原型添加方法
-Fn1.prototype.getFn1Name = function(){
+Fn1.prototype.getFn1Name = function(){ 
     console.log(this.fn1Name)
 }
 // 子类型构造函数

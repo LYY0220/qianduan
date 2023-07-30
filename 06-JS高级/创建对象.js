@@ -2,7 +2,7 @@
 var p1 = new Object()
 p1.name = "people1"
 p1.age = 18
-p1.setAge = function(age){
+p1.setAge = function(age){ 
     this.age = age
 }
 

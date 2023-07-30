@@ -4,7 +4,7 @@
     var age = 18
     // 操作数据的函数
     function getName(){
-        console.log(name)
+        console.log(name) 
     }
     function getAge(){
         console.log(age)
